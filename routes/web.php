@@ -14,15 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('web.third.index');
-});
-
-Route::get('/2', function () {
-    return view('web.second.index');
-});
-
-Route::get('/3', function () {
-    return view('web.first.index');
+    return view('web.index');
 });
 
 Route::middleware([
