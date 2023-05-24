@@ -24,4 +24,15 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
     })->name('dashboard');
 
     Route::get('/enterprises', [ EnterpriseController::class, 'index' ])->name('enterprises');
+
+    Route::get('/download', function () {
+        $path = public_path('files/data_protection.pdf');
+
+        if (file_exists($path)) {
+            return Response::download($path);
+        } else {
+            abort(404, 'El archivo no existe.');
+        }
+
+    })->name('download');
 });

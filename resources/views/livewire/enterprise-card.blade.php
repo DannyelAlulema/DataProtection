@@ -23,6 +23,9 @@
                 class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="sectors" type="text">
                 <option selected>Seleccione...</option>
+                @foreach ($sectors as $sector)
+                    <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                @endforeach
                 <option value="0">Ninguna de las anteriores</option>
             </select>
         </div>
@@ -34,6 +37,9 @@
                 class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="personal_data_uses" type="text">
                 <option selected>Seleccione...</option>
+                @foreach ($uses as $use)
+                    <option value="{{ $use->id }}">{{ $use->name }}</option>
+                @endforeach
                 <option value="0">Ninguna de las anteriores</option>
             </select>
         </div>
@@ -45,9 +51,19 @@
                 class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="personal_data_activities" type="text">
                 <option selected>Seleccione...</option>
+                @foreach ($activities as $activity)
+                    <option value="{{ $activity->id }}">{{ $activity->name }}</option>
+                @endforeach
                 <option value="0">Ninguna de las anteriores</option>
             </select>
         </div>
+    </div>
+
+    <div class="flex justify-start" style="padding: 10px">
+            <p class="w-1/2" style="margin: 0 25px 0 25px;">
+                <b>Pago: </b>
+                <span>Aprobado</span>
+            </p>
     </div>
 
     <div class="flex justify-center" style="padding: 10px">

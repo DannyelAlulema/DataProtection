@@ -40,7 +40,7 @@ CREATE TABLE `enterprises`
 CREATE TABLE `personal_data_activities`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(50) NULL,
+	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_personal_data_uses` PRIMARY KEY (`id` ASC)
 )
 ;
@@ -48,15 +48,15 @@ CREATE TABLE `personal_data_activities`
 CREATE TABLE `personal_data_uses`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(50) NULL,
+	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_personal_data_uses` PRIMARY KEY (`id` ASC)
 )
 ;
 
 CREATE TABLE `sectors`
 (
-	`id` BIGINT NOT NULL,
-	`name` VARCHAR(50) NULL,
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_sectors` PRIMARY KEY (`id` ASC)
 )
 ;
