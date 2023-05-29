@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Enterprise extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'sector_id',
+        'personal_data_use_id',
+        'personal_data_activity_id',
+        'bussines_name',
+        'ci_ruc',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_enterprises')->withPivot('paid');
+    }
 }

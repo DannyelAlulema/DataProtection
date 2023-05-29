@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EnterpriseController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +20,14 @@ Route::get('/', function () {
 });
 
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified' ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [ HomeController::class, 'index' ])->name('dashboard');
 
     Route::get('/enterprises', [ EnterpriseController::class, 'index' ])->name('enterprises');
 
-    Route::get('/download', function () {
+    Route::get('/paids/{enterprise_id}', [ EnterpriseController::class, 'paids' ])->name('paids');
+    Route::post('/pay/{enterprise_id}', [ EnterpriseController::class, 'pay' ])->name('pay');
+
+    Route::get('/download/{enterprise_id}', function () {
         $path = public_path('files/data_protection.pdf');
 
         if (file_exists($path)) {

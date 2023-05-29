@@ -20,6 +20,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -48,6 +50,8 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>

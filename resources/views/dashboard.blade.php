@@ -8,15 +8,66 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <form action="{{ route('download') }}" class="flex justify-between items-center" style="padding: 10px">
-                    <p class="w-1/2">Ya puede acceder a la ley de protección de datos.</p>
-                    <x-button class="ml-4">
-                        <i class="fa-solid fa-download mr-2"></i>
+                @if (count($enterprises) == 0)
+                <div class="flex justify-between items-center" style="padding: 10px">
+                    <p class="w-1/2">No ha registrado a su empresa.</p>
+                    <a href="{{ route('enterprises') }}"
+                        class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        <i class="fa-solid fa-cash-register mr-2"></i>
                         <span class="mx-1">
-                            {{ __('Descargar') }}
+                            {{ __('Registrar') }}
                         </span>
-                    </x-button>
-                </form>
+                    </a>
+                </div>
+                @else
+                    @foreach ($enterprises as $enterprise)
+                        @if ($enterprise->paid)
+                            @if (
+                                $enterprise->sector_id == null &&
+                                    $enterprise->personal_data_use_id == null &&
+                                    $enterprise->personal_data_activity_id == null)
+                                <form action="{{ route('download', ['enterprise_id' => $enterprise->enterprise_id]) }}"
+                                    class="flex justify-between items-center" style="padding: 10px">
+                                    <p class="w-1/2"><b>{{ $enterprise->bussines_name }}: </b> Ya puede acceder a la ley
+                                        de protección de datos.</p>
+                                    <x-button class="ml-4">
+                                        <i class="fa-solid fa-download mr-2"></i>
+                                        <span class="mx-1">
+                                            {{ __('Descargar') }}
+                                        </span>
+                                    </x-button>
+                                </form>
+                            @elseif (
+                                $enterprise->sector_id != null ||
+                                    $enterprise->personal_data_use_id != null ||
+                                    $enterprise->personal_data_activity_id != null)
+                                <div class="flex justify-between items-center" style="padding: 10px">
+                                    <p class="w-1/2"><b>{{ $enterprise->bussines_name }}: </b> Su negocio/empresa requiere una
+                                        asesoría personalizada.</p>
+                                    <a style="cursor: pointer;"
+                                        class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <i class="fa-solid fa-code-pull-request mr-2"></i>
+                                        <span class="mx-1">
+                                            {{ __('Solicitar') }}
+                                        </span>
+                                    </a>
+                                </div>
+                            @endif
+                        @else
+                            <div class="flex justify-between items-center" style="padding: 10px">
+                                <p class="w-1/2"><b>{{ $enterprise->bussines_name }}: </b> Antes de acceder a la ley de
+                                    protección de datos debe cancelar los valores pendientes.</p>
+                                <a href="{{ route('paids', [ 'enterprise_id' => $enterprise->id ]) }}" style="cursor: pointer;"
+                                    class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                    <i class="fa-solid fa-money-bill mr-2"></i>
+                                    <span class="mx-1">
+                                        {{ __('Pagar') }}
+                                    </span>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

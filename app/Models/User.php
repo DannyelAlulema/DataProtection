@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function enterprises()
+    {
+        return $this->belongsToMany(Enterprise::class, 'user_enterprises')->withPivot('paid');
+    }
 }
