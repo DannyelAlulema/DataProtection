@@ -17,6 +17,8 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    @yield('custom-css')
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -52,6 +54,19 @@
     @livewireScripts
 
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script>
+        // Initialization for ES Users
+        import {
+            Collapse,
+            Ripple,
+            initTE,
+        } from "tw-elements";
+
+        initTE({
+            Collapse,
+            Ripple
+        });
+    </script>
 </body>
 
 </html>

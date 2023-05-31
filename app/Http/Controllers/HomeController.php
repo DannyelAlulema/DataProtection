@@ -9,6 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        if (auth()->user()->hasRole('admin')) {
+            return redirect()->route('administration');
+        }
+
         $enterprises = DB::table('user_enterprises')
             ->where('user_id', auth()->user()->id)
             ->join('enterprises', 'user_enterprises.enterprise_id', 'enterprises.id')

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class EnterprisesContainer extends Component
 {
     protected $listeners = [
-        'enterpriseSaved' => 'render'
+        'enterpriseSaved' => 'loadEnterprises'
     ];
 
     public $enterprises = [];
