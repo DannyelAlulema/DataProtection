@@ -1,4 +1,5 @@
 <?php
+use Modules\Administration\Http\Controllers\AdministrationController;
 use Modules\Administration\Http\Controllers\PayController;
 use Modules\Administration\Http\Controllers\UserController;
 
@@ -18,15 +19,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 
     Route::get('/users' , [ UserController::class, 'index' ])->name('administration.users');
     Route::get('/pays/history' , [ PayController::class, 'index' ])->name('administration.pays.history');
-    Route::get('/pays/requests' , [ PayController::class, 'requests' ])->name('administration.pays.requests');
+    //Route::get('/pays/requests' , [ PayController::class, 'requests' ])->name('administration.pays.requests');
 
-    Route::get('/getvoucher' ,function () {
-        $path = public_path('files/voucher.pdf');
-
-        if (file_exists($path)) {
-            return Response::download($path);
-        } else {
-            abort(404, 'El archivo no existe.');
-        }
-    })->name('get.voucher');
+    Route::post('/get-voucher', [ AdministrationController::class, 'getVoucher' ])->name('get.voucher');
 });
+

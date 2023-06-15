@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enterprise;
+use App\Models\PayRequest;
+use App\Models\UserEnterprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,14 +18,19 @@ class EnterpriseController extends Controller
         return view('enterprises');
     }
 
-    public function paids($enterprise_id)
+    public function pay($user_enterprise_id)
     {
-        $enterprise = Enterprise::find($enterprise_id);
+        $userEnterprise = UserEnterprise::with('enterprise')->find($user_enterprise_id);
+        $payRequests = PayRequest::with('state')
+            ->whereRelation('state', 'code', 1)
+            ->where('user_enterprise_id', $user_enterprise_id)
+            ->get()
+        ->toArray();
 
-        return view('paids', compact('enterprise'));
+        return view('pays', compact('userEnterprise', 'payRequests'));
     }
 
-    public function pay(Request $request, $enterprise_id)
+    /*public function pay(Request $request, $enterprise_id)
     {
         $request->validate([
             'card' => 'required',
@@ -37,5 +44,5 @@ class EnterpriseController extends Controller
         ->update(['paid' => true]);
 
         return redirect()->route('dashboard');
-    }
+    }*/
 }

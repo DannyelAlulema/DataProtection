@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\UserEnterprise;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +28,7 @@ class EnterprisesContainer extends Component
     {
         $enterprise = [
             'id' => 0,
-            'paid' => false,
+            'enterprise_id' => 0
         ];
 
         array_push($this->enterprises, $enterprise);
@@ -37,11 +38,6 @@ class EnterprisesContainer extends Component
     {
         $this->enterprises = [];
 
-        foreach (DB::table('user_enterprises')->where('user_id', auth()->user()->id)->get()->toArray() as $value) {
-            array_push($this->enterprises, [
-                'id' => $value->enterprise_id,
-                'paid' => $value->paid
-            ]);
-        }
+        $this->enterprises = UserEnterprise::where('user_id', auth()->user()->id)->get()->toArray();
     }
 }

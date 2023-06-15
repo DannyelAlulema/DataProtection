@@ -15,6 +15,9 @@ class Enterprise extends Model
         'personal_data_activity_id',
         'bussines_name',
         'ci_ruc',
+        'email',
+        'legal_representative',
+        'phone_number'
     ];
 
     public function users()

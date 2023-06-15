@@ -15,8 +15,18 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="ci_ruc" value="{{ __('Cedula o RUC') }}" />
+                <x-input id="ci_ruc" class="block mt-1 w-full" type="text" name="ci_ruc" :value="old('ci_ruc')" required autocomplete="ci_ruc" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="phone_number" value="{{ __('Número telefónico') }}" />
+                <x-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" required autocomplete="phone_number" />
             </div>
 
             <div class="mt-4">

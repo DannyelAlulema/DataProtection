@@ -16,7 +16,7 @@
             @endif
 
             @foreach ($enterprises as $enterprise)
-                @livewire('enterprise-card', ['enterpriseId' => $enterprise['id'], 'paid' => $enterprise['paid']])
+                @livewire('enterprise-card', ['enterpriseId' => $enterprise['enterprise_id'], 'userEnterpriseId' => $enterprise['id']])
             @endforeach
         </div>
     </div>

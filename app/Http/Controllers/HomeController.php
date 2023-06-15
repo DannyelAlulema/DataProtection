@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\UserEnterprise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,11 +15,13 @@ class HomeController extends Controller
             return redirect()->route('administration');
         }
 
-        $enterprises = DB::table('user_enterprises')
+        $data = UserEnterprise::with('user', 'enterprise')
             ->where('user_id', auth()->user()->id)
-            ->join('enterprises', 'user_enterprises.enterprise_id', 'enterprises.id')
-        ->get()->toArray();
+        ->get();
 
-        return view('dashboard', compact('enterprises'));
+        foreach ($data as $key => $value)
+            $data[$key]->appointments = Appointment::where('user_enterprise_id', $value->id)->get()->toArray();
+
+        return view('dashboard', compact('data'));
     }
 }

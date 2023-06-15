@@ -16,9 +16,4 @@ class PayController extends Controller
     {
         return view('administration::pays.history.index');
     }
-
-    public function requests()
-    {
-        return view('administration::pays.requests.index');
-    }
 }

@@ -327,9 +327,14 @@ return [
                 ],
                 [
                     'text' => 'Solicitudes',
-                    'route'  => 'administration.pays.requests',
+                    'route'  => 'pay-requests.index',
                 ],
             ],
+        ],
+        [
+            'text' => 'Asesorías',
+            'icon'    => 'fas fa-fw fa-user',
+            'route'  => 'appointments.index',
         ],
         /*[
             'text' => 'profile',

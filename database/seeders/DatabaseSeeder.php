@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             SectorsTableSeeder::class,
             PersonalDataActivitiesTableSeeder::class,
-            PersonalDataUsersTableSeeder::class
+            PersonalDataUsersTableSeeder::class,
+            AppointmentStatesTableSeeder::class,
+            PayRequestStatesTableSeeder::class
         ]);
 
         $users = User::factory(10)->create();
