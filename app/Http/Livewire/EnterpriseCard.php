@@ -16,7 +16,7 @@ class EnterpriseCard extends Component
     use DocumentValidation;
 
     public $enterpriseId, $userEnterpriseId;
-    public $bussines_name, $ci_ruc, $sector_id, $personal_data_use_id, $personal_data_activity_id, $email, $paid, $phone_number, $legal_representative;
+    public $address, $bussines_name, $description, $ci_ruc, $sector_id, $personal_data_use_id, $personal_data_activity_id, $email, $paid, $phone_number, $legal_representative;
     public $sectors, $activities, $uses;
 
     public function mount($enterpriseId, $userEnterpriseId)
@@ -29,7 +29,9 @@ class EnterpriseCard extends Component
             $userEnterprise = UserEnterprise::find($this->userEnterpriseId);
 
             $this->legal_representative = $enterprise->legal_representative;
+            $this->address = $enterprise->address;
             $this->bussines_name = $enterprise->bussines_name;
+            $this->description = $enterprise->description;
             $this->ci_ruc = $enterprise->ci_ruc;
             $this->phone_number = $enterprise->phone_number;
             $this->email = $enterprise->email;
@@ -56,7 +58,9 @@ class EnterpriseCard extends Component
             'sector_id' => 'required|integer',
             'personal_data_use_id' => 'required|integer',
             'personal_data_activity_id' => 'required|integer',
+            'address' => 'required|max:255',
             'bussines_name' => 'required|max:100',
+            'description' => 'required|max:255',
             'email' => 'required|email|max:50',
             'phone_number' => 'required|max:10',
             'legal_representative' => 'required|max:50',

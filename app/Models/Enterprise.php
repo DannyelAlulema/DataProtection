@@ -13,7 +13,9 @@ class Enterprise extends Model
         'sector_id',
         'personal_data_use_id',
         'personal_data_activity_id',
+        'address',
         'bussines_name',
+        'description',
         'ci_ruc',
         'email',
         'legal_representative',
@@ -23,5 +25,20 @@ class Enterprise extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_enterprises')->withPivot('paid');
+    }
+
+    public function dataUse()
+    {
+        return $this->belongsTo(PersonalDataUse::class, 'personal_data_use_id');
+    }
+
+    public function dataActivity()
+    {
+        return $this->belongsTo(PersonalDataActivity::class, 'personal_data_activity_id');
+    }
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class, 'sector_id');
     }
 }

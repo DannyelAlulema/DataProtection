@@ -65,7 +65,9 @@ CREATE TABLE `enterprises`
 	`sector_id` BIGINT NULL,
 	`personal_data_use_id` BIGINT NULL,
 	`personal_data_activity_id` BIGINT NULL,
+	`address` VARCHAR(255) NULL,
 	`bussines_name` VARCHAR(100) NULL,
+	`description` VARCHAR(255) NULL,
 	`email` VARCHAR(50) NULL,
 	`legal_representative` VARCHAR(50) NULL,
 	`ci_ruc` VARCHAR(13) NULL,
@@ -86,7 +88,7 @@ CREATE TABLE `pay_request_states`
 	`name` VARCHAR(50) NULL,
 	`code` INT NULL,
 	`alias` VARCHAR(50) NULL,
-	CONSTRAINT `PK_pay_request_states` PRIMARY KEY (`id` ASC)
+	CONSTRAINT `PK_paid_request_states` PRIMARY KEY (`id` ASC)
 )
 ;
 
@@ -103,7 +105,7 @@ CREATE TABLE `pay_requests`
 	`updated_by` BIGINT NULL,
 	`deleted_at` TIMESTAMP NULL,
 	`deleted_by` BIGINT NULL,
-	CONSTRAINT `PK_pay_requests` PRIMARY KEY (`id` ASC)
+	CONSTRAINT `PK_paid_requests` PRIMARY KEY (`id` ASC)
 )
 ;
 
@@ -137,6 +139,12 @@ CREATE TABLE `user_enterprises`
 	`user_id` BIGINT NOT NULL,
 	`enterprise_id` BIGINT NOT NULL,
 	`paid` BOOL NULL,
+	`created_at` TIMESTAMP NOT NULL,
+	`created_by` BIGINT NULL,
+	`updated_at` TIMESTAMP NULL,
+	`updated_by` BIGINT NULL,
+	`deleted_at` TIMESTAMP NULL,
+	`deleted_by` BIGINT NULL,
 	CONSTRAINT `PK_user_enterprises` PRIMARY KEY (`id` ASC)
 )
 ;
@@ -162,83 +170,83 @@ CREATE TABLE `users`
 )
 ;
 
-ALTER TABLE `appointments`
+ALTER TABLE `appointments` 
  ADD INDEX `IXFK_appointments_appointment_states` (`appointment_state_id` ASC)
 ;
 
-ALTER TABLE `appointments`
+ALTER TABLE `appointments` 
  ADD INDEX `IXFK_appointments_user_enterprises` (`user_enterprise_id` ASC)
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD INDEX `IXFK_enterprises_personal_data_activities` (`personal_data_activity_id` ASC)
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD INDEX `IXFK_enterprises_personal_data_uses` (`personal_data_use_id` ASC)
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD INDEX `IXFK_enterprises_sectors` (`sector_id` ASC)
 ;
 
-ALTER TABLE `pay_requests`
- ADD INDEX `IXFK_pay_requests_pay_request_states` (`pay_request_state_id` ASC)
+ALTER TABLE `pay_requests` 
+ ADD INDEX `IXFK_paid_requests_paid_request_states` (`pay_request_state_id` ASC)
 ;
 
-ALTER TABLE `pay_requests`
- ADD INDEX `IXFK_pay_requests_user_enterprises` (`user_enterprise_id` ASC)
+ALTER TABLE `pay_requests` 
+ ADD INDEX `IXFK_paid_requests_user_enterprises` (`user_enterprise_id` ASC)
 ;
 
-ALTER TABLE `user_enterprises`
+ALTER TABLE `user_enterprises` 
  ADD INDEX `IXFK_user_enterprises_enterprises` (`enterprise_id` ASC)
 ;
 
-ALTER TABLE `user_enterprises`
+ALTER TABLE `user_enterprises` 
  ADD INDEX `IXFK_user_enterprises_users` (`user_id` ASC)
 ;
 
-ALTER TABLE `appointments`
+ALTER TABLE `appointments` 
  ADD CONSTRAINT `FK_appointments_appointment_states`
 	FOREIGN KEY (`appointment_state_id`) REFERENCES `appointment_states` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `appointments`
+ALTER TABLE `appointments` 
  ADD CONSTRAINT `FK_appointments_user_enterprises`
 	FOREIGN KEY (`user_enterprise_id`) REFERENCES `user_enterprises` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD CONSTRAINT `FK_enterprises_personal_data_activities`
 	FOREIGN KEY (`personal_data_activity_id`) REFERENCES `personal_data_activities` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD CONSTRAINT `FK_enterprises_personal_data_uses`
 	FOREIGN KEY (`personal_data_use_id`) REFERENCES `personal_data_uses` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `enterprises`
+ALTER TABLE `enterprises` 
  ADD CONSTRAINT `FK_enterprises_sectors`
 	FOREIGN KEY (`sector_id`) REFERENCES `sectors` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `pay_requests`
- ADD CONSTRAINT `FK_pay_requests_pay_request_states`
+ALTER TABLE `pay_requests` 
+ ADD CONSTRAINT `FK_paid_requests_paid_request_states`
 	FOREIGN KEY (`pay_request_state_id`) REFERENCES `pay_request_states` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `pay_requests`
- ADD CONSTRAINT `FK_pay_requests_user_enterprises`
+ALTER TABLE `pay_requests` 
+ ADD CONSTRAINT `FK_paid_requests_user_enterprises`
 	FOREIGN KEY (`user_enterprise_id`) REFERENCES `user_enterprises` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `user_enterprises`
+ALTER TABLE `user_enterprises` 
  ADD CONSTRAINT `FK_user_enterprises_enterprises`
 	FOREIGN KEY (`enterprise_id`) REFERENCES `enterprises` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
-ALTER TABLE `user_enterprises`
+ALTER TABLE `user_enterprises` 
  ADD CONSTRAINT `FK_user_enterprises_users`
 	FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;

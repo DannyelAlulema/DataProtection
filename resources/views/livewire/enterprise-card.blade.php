@@ -27,6 +27,7 @@
                 </div>
             </div>
         </div>
+
         <div class="flex justify-center items-center mt-3" style="padding: 10px">
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
                 <input wire:model="bussines_name"
@@ -50,6 +51,25 @@
                     id="phone_number" type="text" placeholder="Número telefónico">
                 <div class="invalid-feedback">
                     {{ $errors->first('phone_number') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center mt-3" style="padding: 10px">
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <textarea wire:model.defer="address" name="address" id="address"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('address') ? ' is-invalid' : '' }}"
+                    placeholder="Dirección">{{ $address }}</textarea>
+                <div class="invalid-feedback">
+                    {{ $errors->first('address') }}
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <textarea wire:model.defer="description" name="description" id="description"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                    placeholder="Descripción de la actividad">{{ $description }}</textarea>
+                <div class="invalid-feedback">
+                    {{ $errors->first('description') }}
                 </div>
             </div>
         </div>
