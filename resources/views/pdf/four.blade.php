@@ -165,7 +165,7 @@
         </p>
         <p class="text">
             Los datos personales se conservarán y almacenarán en los ficheros o bases de datos de
-            {{ $data['enterprise']['bussines_name'] }}
+            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             conforme el tiempo establecido en su Política de Protección de Datos Personales, mientras perdure la
             relación
             laboral, o conforme la legislación correspondiente.

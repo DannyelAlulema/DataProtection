@@ -107,7 +107,7 @@
         quienes se entregue datos personales de los clientes, potenciales clientes o trabajadores de la organización.
     </p>
     <p class="text">
-        En el campo denominado [Empresa Encargada] se colocará el nombre de la persona natural o jurídica a la que se
+        En el campo denominado <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong> se colocará el nombre de la persona natural o jurídica a la que se
         remitieron los datos.
     </p>
     <p class="text">
@@ -117,45 +117,45 @@
         Para propósito de este Contrato, se considerará como Información Confidencial, cualquier información verbal o
         contenida en documentos escritos o en cualquier otro tipo de soporte, de cualquier naturaleza, ya sea a través
         de medios magnéticos y/o electrónicos, que tenga relación con el objeto de este contrato y que sea entregada a
-        [Empresa Encargada]
+        <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong>
     </p>
     @if ($data['paid'])
         <p class="text">
-            La Información Confidencial podrá ser entregada, revelada o difundida a terceros por [Empresa Encargada]
+            La Información Confidencial podrá ser entregada, revelada o difundida a terceros por <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong>
             siempre
-            que {{ $data['enterprise']['bussines_name'] }} lo haya autorizado previamente y por escrito. Asimismo, las
-            [Empresa Encargada]
+            que <strong>{{ $data['enterprise']['bussines_name'] }}</strong> lo haya autorizado previamente y por escrito. Asimismo, las
+            <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong>
             se compromete a devolver y destruir la Información Confidencial que esté en su poder siempre que
-            {{ $data['enterprise']['bussines_name'] }} así lo disponga y se lo comuniquen por escrito.
+            <strong>{{ $data['enterprise']['bussines_name'] }}</strong> así lo disponga y se lo comuniquen por escrito.
         </p>
         <p class="text">
-            En caso de incumplimiento de lo dispuesto en esta cláusula por parte de [Empresa Encargada] será responsable
-            frente a {{ $data['enterprise']['bussines_name'] }} de los daños y perjuicios que le ocasiones, sin
+            En caso de incumplimiento de lo dispuesto en esta cláusula por parte de <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong> será responsable
+            frente a <strong>{{ $data['enterprise']['bussines_name'] }}</strong> de los daños y perjuicios que le ocasiones, sin
             perjuicio de la
             responsabilidad penal que eso conlleve.
         </p>
 
         <p class="text">
-            Cláusula [ ]: Obligaciones de [Empresa Encargada]
+            Cláusula [ ]: Obligaciones de <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong>
         </p>
         <p class="text">
-            [Empresa Encargada] se obliga a:
+            <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong> se obliga a:
         </p>
 
         <ol class="list">
-            <li>Utilizar los datos personales compartidos por {{ $data['enterprise']['bussines_name'] }}, únicamente
+            <li>Utilizar los datos personales compartidos por <strong>{{ $data['enterprise']['bussines_name'] }},</strong> únicamente
                 para la ejecución de
-                las actividades objeto de este contrato. En caso de que {{ $data['enterprise']['bussines_name'] }}
+                las actividades objeto de este contrato. En caso de que <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
                 requiera que [Empresa
                 Encargada] realice otro tipo de tratamiento de los datos personales, se suscribirá una adenda a este
                 contrato.</li>
             <li>Trata los datos personales proporcionados, de acuerdo a las instrucciones de
-                {{ $data['enterprise']['bussines_name'] }}.
+                <strong>{{ $data['enterprise']['bussines_name'] }}.</strong>
             </li>
             <li>No comunicar los datos personales a terceras personas, salvo que cuente con la autorización expresa de
-                {{ $data['enterprise']['bussines_name'] }}</li>
+                <strong>{{ $data['enterprise']['bussines_name'] }}</</strong>li>
             <li>Mantener la confidencialidad de todos los datos personales proporcionados por
-                {{ $data['enterprise']['bussines_name'] }}
+                <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             </li>
             <li>Garantizar que sus trabajadores y terceros relacionados que tengan acceso a los datos personales,
                 respetarán
@@ -166,13 +166,13 @@
                 para
                 proteger la confidencialidad, integridad, disponibilidad y resiliencia de los sistemas.</li>
             <li>Verificar, evaluar y valorar constantemente la eficacia de las medidas implementadas.</li>
-            <li>Notificar a {{ $data['enterprise']['bussines_name'] }} en el máximo de 48 horas, a través de correo
+            <li>Notificar a <strong>{{ $data['enterprise']['bussines_name'] }}</strong> en el máximo de 48 horas, a través de correo
                 electrónico, cualquier
                 evento de vulneración de seguridad de los datos personales objeto del tratamiento.</li>
-            <li>Cuando los titulares de los datos personales ejerzan ante el [Empresa Encargada] los
+            <li>Cuando los titulares de los datos personales ejerzan ante el <strong>EMPRESA LEY DE PROTECCIÓN DE DATOS</strong> los
                 derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento, portabilidad de
                 datos u
-                otros similares, este deberá comunicarlo a {{ $data['enterprise']['bussines_name'] }} de forma
+                otros similares, este deberá comunicarlo a <strong>{{ $data['enterprise']['bussines_name'] }}</strong> de forma
                 inmediata.</li>
         </ol>
     @else

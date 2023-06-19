@@ -108,7 +108,7 @@
         personales, o como un documento aparte, en cuyo caso se deberán recopilar los datos al final del mismo.
     </p>
     <p class="text">
-        En el campo denominado [Nombre del Titular] se colocará el nombre de la persona que entrega sus datos
+        En el campo denominado <strong>{{ $data['enterprise']['legal_representative'] }}</strong> se colocará el nombre de la persona que entrega sus datos
         personales.
     </p>
     <p class="text">
@@ -122,14 +122,14 @@
 
     @if ($data['paid'])
         <p class="text">
-            [Nombre del Titular] otorgo mi consentimiento para que {{ $data['enterprise']['bussines_name'] }} con RUC
-            número {{ $data['enterprise']['ci_ruc'] }},
-            ubicado en {{ $data['enterprise']['address'] }}, trate mis datos personales facilitados, con el fin de
-            proveer
+            <strong>{{ $data['enterprise']['legal_representative'] }}</strong> otorgo mi consentimiento para que
+            <strong>{{ $data['enterprise']['bussines_name'] }}</strong> con RUC número <strong>{{ $data['enterprise']['ci_ruc'] }}</strong>,
+            ubicado en <strong>{{ $data['enterprise']['address'] }}</strong>, trate mis datos personales facilitados,
+            con el fin de proveer
             del servicio y/o bienes solicitados, y cumplir con las obligaciones contractuales acordadas. Así también,
-            autorizo para que mis datos sean tratados con el fin que {{ $data['enterprise']['bussines_name'] }} oferte
-            sus servicios y
-            bienes y realice encuestas de satisfacción, a través de aplicaciones de mensajería instantánea, correo
+            autorizo para que mis datos sean tratados con el fin que <strong>{{ $data['enterprise']['bussines_name'] }}</strong> oferte
+            sus servicios y bienes y realice encuestas de satisfacción, a través de aplicaciones de mensajería
+            instantánea, correo
             electrónico y redes sociales. También autorizo para que la organización pueda compartir mis datos personales
             con
             terceros relacionados para que realicen el tratamiento como encargados.
@@ -137,31 +137,31 @@
         <p class="text">
             La no entrega de los datos solicitados y consentimiento, no me permitirá gozar de los beneficios ofrecidos
             por
-            {{ $data['enterprise']['bussines_name'] }}, así como limitará la prestación del servicio y contratación de
+            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>, así como limitará la prestación del servicio y contratación de
             bienes.
         </p>
         <p class="text">
             Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de
-            {{ $data['enterprise']['bussines_name'] }}
+            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             conforme el tiempo establecido en su Política de Protección de Datos Personales
         </p>
         <p class="text">
             Como titular de sus datos personales, podré ejercer los derechos de acceso, rectificación, oposición al
             tratamiento y eliminación reconocidos en el Ley Orgánica de Protección de Datos Personales, mediante una
-            comunicación escrita a la dirección de correo electrónico {{ $data['enterprise']['email'] }}, o a las
-            oficinas de {{ $data['enterprise']['bussines_name'] }} antes indicadas.
+            comunicación escrita a la dirección de correo electrónico <strong>{{ $data['enterprise']['email'] }}</strong>, o a las
+            oficinas de <strong>{{ $data['enterprise']['bussines_name'] }}</strong> antes indicadas.
         </p>
 
         <div class="sign-space">
             <div class="sign">
                 <p>
-                    <span>[Nombre Titular]</span>
+                    <span><strong>{{ $data['enterprise']['legal_representative'] }}</strong></span>
                     <br>
-                    <span>[Número de Cédula Titular]</span>
+                    <span><strong>{{ $data['enterprise']['legal_representative_ci'] }}</strong></span>
                     <br>
-                    <span>[Número de teléfono móvil del Titular]</span>
+                    <span><strong>{{ $data['enterprise']['legal_representative_phone'] }}</strong></span>
                     <br>
-                    <span>[Correo electrónico del Titular]</span>
+                    <span><strong>{{ $data['enterprise']['legal_representative_email'] }}</strong></span>
                 </p>
             </div>
         </div>

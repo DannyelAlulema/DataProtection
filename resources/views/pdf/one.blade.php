@@ -102,28 +102,28 @@
     <div class="container">
         <h1 class="title">POLÍTICA DE PROTECCIÓN DE DATOS PERSONALES</h1>
         <h2 class="section-header">1. IDENTIFICACIÓN DEL RESPONSABLE DEL TRATAMIENTO DE LA INFORMACIÓN:</h2>
-        <p class="text">{{ $data['enterprise']['bussines_name'] }}, que para efectos de la presente política se
+        <p class="text"><strong>{{ $data['enterprise']['bussines_name'] }}</strong>, que para efectos de la presente política se
             denominará como la “Organización”, es
             una
-            empresa dedicada a {{ $data['enterprise']['description'] }}.</p>
-        <p class="text">Identificación: {{ $data['enterprise']['bussines_name'] }}</p>
+            empresa dedicada a <strong>{{ $data['enterprise']['description'] }}</strong>.</p>
+        <p class="text">Identificación: <strong>{{ $data['enterprise']['bussines_name'] }}</strong></p>
 
         <table class="tbl">
             <tr>
                 <td>RUC</td>
-                <td>{{ $data['enterprise']['ci_ruc'] }}</td>
+                <td><strong>{{ $data['enterprise']['ci_ruc'] }}</strong></td>
             </tr>
             <tr>
                 <td>Domicilio</td>
-                <td>{{ $data['enterprise']['address'] }}</td>
+                <td><strong>{{ $data['enterprise']['address'] }}</strong></td>
             </tr>
             <tr>
                 <td>Teléfono</td>
-                <td>{{ $data['enterprise']['phone_number'] }}</td>
+                <td><strong>{{ $data['enterprise']['phone_number'] }}</strong></td>
             </tr>
             <tr>
                 <td>Correo electrónico</td>
-                <td>{{ $data['enterprise']['email'] }}</td>
+                <td><strong>{{ $data['enterprise']['email'] }}</strong></td>
             </tr>
         </table>
 
@@ -419,7 +419,7 @@
             <h2 class="section-header">8. TRATAMIENTO E INTERÉS LEGÍTIMO</h2>
             <h3 class="text">8.1 Tratamiento legítimo</h3>
             <p class="text">
-                El tratamiento de datos personales por parte de {{ $data['enterprise']['bussines_name'] }} es legítimo y
+                El tratamiento de datos personales por parte de <strong>{{ $data['enterprise']['bussines_name'] }}</strong> es legítimo y
                 lícito cuando se cumple
                 una de las siguientes condiciones:
             </p>

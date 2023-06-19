@@ -16,7 +16,7 @@ class EnterpriseCard extends Component
     use DocumentValidation;
 
     public $enterpriseId, $userEnterpriseId;
-    public $address, $bussines_name, $description, $ci_ruc, $sector_id, $personal_data_use_id, $personal_data_activity_id, $email, $paid, $phone_number, $legal_representative;
+    public $address, $bussines_name, $description, $ci_ruc, $sector_id, $personal_data_use_id, $personal_data_activity_id, $email, $paid, $phone_number, $legal_representative, $legal_representative_ci, $legal_representative_phone, $legal_representative_email;
     public $sectors, $activities, $uses;
 
     public function mount($enterpriseId, $userEnterpriseId)
@@ -29,6 +29,10 @@ class EnterpriseCard extends Component
             $userEnterprise = UserEnterprise::find($this->userEnterpriseId);
 
             $this->legal_representative = $enterprise->legal_representative;
+            $this->legal_representative_ci = $enterprise->legal_representative_ci;
+            $this->legal_representative_phone = $enterprise->legal_representative_phone;
+            $this->legal_representative_email = $enterprise->legal_representative_email;
+
             $this->address = $enterprise->address;
             $this->bussines_name = $enterprise->bussines_name;
             $this->description = $enterprise->description;
@@ -64,6 +68,9 @@ class EnterpriseCard extends Component
             'email' => 'required|email|max:50',
             'phone_number' => 'required|max:10',
             'legal_representative' => 'required|max:50',
+            'legal_representative_ci' => 'required|max:10',
+            'legal_representative_phone' => 'required|max:10',
+            'legal_representative_email' => 'required|max:50',
         ];
         $rules['ci_ruc'] = ($this->enterpriseId == 0) ? 'required|max:13|min:10|unique:enterprises,ci_ruc' : 'required|max:13|min:10';
 
@@ -71,7 +78,15 @@ class EnterpriseCard extends Component
 
         if (!$this->validCi($validated['ci_ruc'])) {
             session([
-                'enterprise-message' => 'Cedula o RUC invalido.',
+                'enterprise-message' => 'RUC de la empresa invalido.',
+                'type' => 'red',
+            ]);
+            return;
+        }
+
+        if (!$this->validCi($validated['ci_ruc'])) {
+            session([
+                'enterprise-message' => 'Numero de cédula del representante invalido.',
                 'type' => 'red',
             ]);
             return;

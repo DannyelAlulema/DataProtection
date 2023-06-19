@@ -21,7 +21,7 @@
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
                 <input wire:model="email" type="text"
                     class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                    id="email" type="text" placeholder="Email de empresa o negocio">
+                    id="email" type="text" placeholder="Email de la empresa">
                 <div class="invalid-feedback">
                     {{ $errors->first('email') }}
                 </div>
@@ -40,7 +40,7 @@
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
                 <input wire:model="ci_ruc"
                     class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('ci_ruc') ? ' is-invalid' : '' }}"
-                    id="ci_ruc" type="text" placeholder="RUC">
+                    id="ci_ruc" type="text" placeholder="RUC de la empresa">
                 <div class="invalid-feedback">
                     {{ $errors->first('ci_ruc') }}
                 </div>
@@ -48,9 +48,36 @@
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
                 <input wire:model="phone_number"
                     class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
-                    id="phone_number" type="text" placeholder="Número telefónico">
+                    id="phone_number" type="text" placeholder="Número telefónico de la empresa">
                 <div class="invalid-feedback">
                     {{ $errors->first('phone_number') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center mt-3" style="padding: 10px">
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="legal_representative_ci"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative_ci') ? ' is-invalid' : '' }}"
+                    id="legal_representative_ci" type="text" placeholder="Número de cédula del representante legal">
+                <div class="invalid-feedback">
+                    {{ $errors->first('legal_representative_ci') }}
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="legal_representative_phone"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative_phone') ? ' is-invalid' : '' }}"
+                    id="legal_representative_phone" type="text" placeholder="Número telefónico del representante legal">
+                <div class="invalid-feedback">
+                    {{ $errors->first('legal_representative_phone') }}
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="legal_representative_email"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative_email') ? ' is-invalid' : '' }}"
+                    id="legal_representative_email" type="text" placeholder="Email del representante legal ">
+                <div class="invalid-feedback">
+                    {{ $errors->first('legal_representative_email') }}
                 </div>
             </div>
         </div>
@@ -149,6 +176,8 @@
                     class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">
                     <i class="fa-solid fa-money-bill mr-2" style="font-size: 20px;"></i>Pagar
                 </a>
+            @endif
+            @if (!$paid)
             @endif
             <button wire:click="save"
                 class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">

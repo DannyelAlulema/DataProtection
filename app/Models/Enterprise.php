@@ -18,8 +18,11 @@ class Enterprise extends Model
         'description',
         'ci_ruc',
         'email',
+        'phone_number',
         'legal_representative',
-        'phone_number'
+        'legal_representative_ci',
+        'legal_representative_phone',
+        'legal_representative_email',
     ];
 
     public function users()
