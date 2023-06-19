@@ -189,20 +189,25 @@
                                 </a>
                             </div>
                             <div>
-                                <a
+                                <a href="{{ route('download', ['document' => 1, 'enterprise_id' => $value->enterprise->id]) }}"
                                     class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                     <i class="fa-solid fa-file mr-2"></i>
                                     Documento 1
                                 </a>
-                                <a
+                                <a href="{{ route('download', ['document' => 2, 'enterprise_id' => $value->enterprise->id]) }}"
                                     class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                     <i class="fa-solid fa-file mr-2"></i>
                                     Documento 2
                                 </a>
-                                <a
+                                <a href="{{ route('download', ['document' => 3, 'enterprise_id' => $value->enterprise->id]) }}"
                                     class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                     <i class="fa-solid fa-file mr-2"></i>
                                     Documento 3
+                                </a>
+                                <a href="{{ route('download', ['document' => 4, 'enterprise_id' => $value->enterprise->id]) }}"
+                                    class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
+                                    <i class="fa-solid fa-file mr-2"></i>
+                                    Documento 4
                                 </a>
                             </div>
                         @endif

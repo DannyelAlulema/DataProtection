@@ -86,6 +86,15 @@
             width: 35%;
             border-top: 1px solid #000;
         }
+
+        .pay-alert {
+            margin-top: 250px;
+            display: block;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            color: red;
+        }
     </style>
 </head>
 
@@ -111,43 +120,56 @@
         consentimiento.
     </p>
 
-    <p class="text">
-        [ Nombre del Titular] otorgo mi consentimiento para que {{ $data['enterprise']['bussines_name'] }} con RUC número {{ $data['enterprise']['ci_ruc'] }},
-        ubicado en {{ $data['enterprise']['address'] }}, trate mis datos personales facilitados, con el fin de proveer
-        del servicio y/o bienes solicitados, y cumplir con las obligaciones contractuales acordadas. Así también,
-        autorizo para que mis datos sean tratados con el fin que {{ $data['enterprise']['bussines_name'] }} oferte sus servicios y
-        bienes y realice encuestas de satisfacción, a través de aplicaciones de mensajería instantánea, correo
-        electrónico y redes sociales. También autorizo para que la organización pueda compartir mis datos personales con
-        terceros relacionados para que realicen el tratamiento como encargados.
-    </p>
-    <p class="text">
-        La no entrega de los datos solicitados y consentimiento, no me permitirá gozar de los beneficios ofrecidos por
-        {{ $data['enterprise']['bussines_name'] }}, así como limitará la prestación del servicio y contratación de bienes.
-    </p>
-    <p class="text">
-        Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de {{ $data['enterprise']['bussines_name'] }}
-        conforme el tiempo establecido en su Política de Protección de Datos Personales
-    </p>
-    <p class="text">
-        Como titular de sus datos personales, podré ejercer los derechos de acceso, rectificación, oposición al
-        tratamiento y eliminación reconocidos en el Ley Orgánica de Protección de Datos Personales, mediante una
-        comunicación escrita a la dirección de correo electrónico {{ $data['enterprise']['email'] }}, o a las
-        oficinas de {{ $data['enterprise']['bussines_name'] }} antes indicadas.
-    </p>
+    @if ($data['paid'])
+        <p class="text">
+            [Nombre del Titular] otorgo mi consentimiento para que {{ $data['enterprise']['bussines_name'] }} con RUC
+            número {{ $data['enterprise']['ci_ruc'] }},
+            ubicado en {{ $data['enterprise']['address'] }}, trate mis datos personales facilitados, con el fin de
+            proveer
+            del servicio y/o bienes solicitados, y cumplir con las obligaciones contractuales acordadas. Así también,
+            autorizo para que mis datos sean tratados con el fin que {{ $data['enterprise']['bussines_name'] }} oferte
+            sus servicios y
+            bienes y realice encuestas de satisfacción, a través de aplicaciones de mensajería instantánea, correo
+            electrónico y redes sociales. También autorizo para que la organización pueda compartir mis datos personales
+            con
+            terceros relacionados para que realicen el tratamiento como encargados.
+        </p>
+        <p class="text">
+            La no entrega de los datos solicitados y consentimiento, no me permitirá gozar de los beneficios ofrecidos
+            por
+            {{ $data['enterprise']['bussines_name'] }}, así como limitará la prestación del servicio y contratación de
+            bienes.
+        </p>
+        <p class="text">
+            Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de
+            {{ $data['enterprise']['bussines_name'] }}
+            conforme el tiempo establecido en su Política de Protección de Datos Personales
+        </p>
+        <p class="text">
+            Como titular de sus datos personales, podré ejercer los derechos de acceso, rectificación, oposición al
+            tratamiento y eliminación reconocidos en el Ley Orgánica de Protección de Datos Personales, mediante una
+            comunicación escrita a la dirección de correo electrónico {{ $data['enterprise']['email'] }}, o a las
+            oficinas de {{ $data['enterprise']['bussines_name'] }} antes indicadas.
+        </p>
 
-    <div class="sign-space">
-        <div class="sign">
-            <p>
-                <span>[Nombre Titular]</span>
-                <br>
-                <span>[Número de Cédula Titular]</span>
-                <br>
-                <span>[Número de teléfono móvil del Titular]</span>
-                <br>
-                <span>[Correo electrónico del Titular]</span>
-            </p>
+        <div class="sign-space">
+            <div class="sign">
+                <p>
+                    <span>[Nombre Titular]</span>
+                    <br>
+                    <span>[Número de Cédula Titular]</span>
+                    <br>
+                    <span>[Número de teléfono móvil del Titular]</span>
+                    <br>
+                    <span>[Correo electrónico del Titular]</span>
+                </p>
+            </div>
         </div>
-    </div>
+    @else
+        <div class="pay-alert">
+            Para acceder a los completamente a los recursos, por favor cancela los valores pendientes.
+        </div>
+    @endif
 
 </body>
 
