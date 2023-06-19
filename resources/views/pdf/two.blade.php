@@ -73,7 +73,7 @@
         }
 
         .sign-space {
-            margin-top: 450px;
+            margin-top: 400px;
             display: block;
             text-align: center;
             width: 100%;
