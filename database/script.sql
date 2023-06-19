@@ -142,7 +142,7 @@ CREATE TABLE `user_enterprises`
 	`user_id` BIGINT NOT NULL,
 	`enterprise_id` BIGINT NOT NULL,
 	`paid` BOOL NULL,
-	`created_at` TIMESTAMP NOT NULL,
+	`created_at` TIMESTAMP NULL,
 	`created_by` BIGINT NULL,
 	`updated_at` TIMESTAMP NULL,
 	`updated_by` BIGINT NULL,

@@ -143,19 +143,19 @@
         </p>
 
         <ol class="list">
-            <li>Utilizar los datos personales compartidos por <strong>{{ $data['enterprise']['bussines_name'] }},</strong> únicamente
+            <li>
+                Utilizar los datos personales compartidos por <strong>{{ $data['enterprise']['bussines_name'] }},</strong> únicamente
                 para la ejecución de
                 las actividades objeto de este contrato. En caso de que <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
                 requiera que [Empresa
                 Encargada] realice otro tipo de tratamiento de los datos personales, se suscribirá una adenda a este
-                contrato.</li>
-            <li>Trata los datos personales proporcionados, de acuerdo a las instrucciones de
-                <strong>{{ $data['enterprise']['bussines_name'] }}.</strong>
+                contrato.
             </li>
-            <li>No comunicar los datos personales a terceras personas, salvo que cuente con la autorización expresa de
-                <strong>{{ $data['enterprise']['bussines_name'] }}</</strong>li>
-            <li>Mantener la confidencialidad de todos los datos personales proporcionados por
-                <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
+            <li>
+                Trata los datos personales proporcionados, de acuerdo a las instrucciones de <strong>{{ $data['enterprise']['bussines_name'] }}.</strong>
+            </li>
+            <li>No comunicar los datos personales a terceras personas, salvo que cuente con la autorización expresa de <strong>{{ $data['enterprise']['bussines_name'] }}</strong></li>
+            <li>Mantener la confidencialidad de todos los datos personales proporcionados por <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             </li>
             <li>Garantizar que sus trabajadores y terceros relacionados que tengan acceso a los datos personales,
                 respetarán

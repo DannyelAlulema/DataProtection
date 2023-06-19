@@ -122,8 +122,7 @@
 
     @if ($data['paid'])
         <p class="text">
-            <strong>{{ $data['enterprise']['legal_representative'] }}</strong> otorgo mi consentimiento para que
-            <strong>{{ $data['enterprise']['bussines_name'] }}</strong> con RUC número <strong>{{ $data['enterprise']['ci_ruc'] }}</strong>,
+            <strong>{{ $data['enterprise']['legal_representative'] }}</strong> otorgo mi consentimiento para que <strong>{{ $data['enterprise']['bussines_name'] }}</strong> con RUC número <strong>{{ $data['enterprise']['ci_ruc'] }}</strong>,
             ubicado en <strong>{{ $data['enterprise']['address'] }}</strong>, trate mis datos personales facilitados,
             con el fin de proveer
             del servicio y/o bienes solicitados, y cumplir con las obligaciones contractuales acordadas. Así también,
@@ -136,13 +135,11 @@
         </p>
         <p class="text">
             La no entrega de los datos solicitados y consentimiento, no me permitirá gozar de los beneficios ofrecidos
-            por
-            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>, así como limitará la prestación del servicio y contratación de
+            por <strong>{{ $data['enterprise']['bussines_name'] }}</strong>, así como limitará la prestación del servicio y contratación de
             bienes.
         </p>
         <p class="text">
-            Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de
-            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
+            Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             conforme el tiempo establecido en su Política de Protección de Datos Personales
         </p>
         <p class="text">

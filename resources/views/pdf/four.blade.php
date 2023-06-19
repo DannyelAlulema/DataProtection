@@ -164,8 +164,7 @@
             oposición, suspensión y portabilidad de sus datos por medio de comunicación al EMPLEADOR de forma escrita.
         </p>
         <p class="text">
-            Los datos personales se conservarán y almacenarán en los ficheros o bases de datos de
-            <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
+            Los datos personales se conservarán y almacenarán en los ficheros o bases de datos de <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
             conforme el tiempo establecido en su Política de Protección de Datos Personales, mientras perdure la
             relación
             laboral, o conforme la legislación correspondiente.
