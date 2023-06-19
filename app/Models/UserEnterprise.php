@@ -9,15 +9,13 @@ class UserEnterprise extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = 'user_enterprises';
 
     protected $fillable = [
         'enterprise_id',
         'user_id',
         'paid'
     ];
-
-    protected $table = 'user_enterprises';
 
     function user()
     {
