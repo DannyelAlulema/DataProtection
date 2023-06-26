@@ -58,6 +58,8 @@ class EnterpriseCard extends Component
 
     public function save()
     {
+        $new = false;
+
         $rules = [
             'sector_id' => 'required|integer',
             'personal_data_use_id' => 'required|integer',
@@ -69,8 +71,8 @@ class EnterpriseCard extends Component
             'phone_number' => 'required|max:10',
             'legal_representative' => 'required|max:50',
             'legal_representative_ci' => 'required|max:10',
-            'legal_representative_phone' => 'required|max:10',
-            'legal_representative_email' => 'required|max:50',
+            //'legal_representative_phone' => 'required|max:10',
+            //'legal_representative_email' => 'required|max:50',
         ];
         $rules['ci_ruc'] = ($this->enterpriseId == 0) ? 'required|max:13|min:10|unique:enterprises,ci_ruc' : 'required|max:13|min:10';
 
@@ -96,6 +98,9 @@ class EnterpriseCard extends Component
         $validated['personal_data_use_id'] = ($validated['personal_data_use_id'] == 0) ? null : $validated['personal_data_use_id'];
         $validated['personal_data_activity_id'] = ($validated['personal_data_activity_id'] == 0) ? null : $validated['personal_data_activity_id'];
 
+        $validated['legal_representative_phone'] = $validated['phone_number'];
+        $validated['legal_representative_email'] = $validated['email'];
+
         if ($this->enterpriseId == 0) {
             $enterprise = Enterprise::create($validated);
             $enterprise->created_by = auth()->user()->id;
@@ -106,10 +111,11 @@ class EnterpriseCard extends Component
                 ->where('enterprise_id', $enterprise->id)
                 ->where('user_id', auth()->user()->id)
             ->update(['paid' => false]);
+
+            $new = true;
         } else {
             $enterprise = Enterprise::findOrFail($this->enterpriseId);
             $enterprise->fill($validated);
-
             if ($enterprise->isClean()) {
                 session([
                     'enterprise-message' => 'Por lo menos un valor debe cambiar.',
@@ -122,8 +128,13 @@ class EnterpriseCard extends Component
         $enterprise->updated_by = auth()->user()->id;
         $enterprise->save();
 
+        $message = $new
+            ? '<p>Empresa registrada exitosamente, por favor verificar si todos los datos son correctos antes de avanzar en el siguiente paso.</p>'
+            : '<p>Datos actualizados exitosamente, por favor verificar si todos los datos son correctos antes de avanzar en el siguiente paso.</p>';
+        $message .= '<p><a style="text-decoration: underline;" href="'.route('dashboard').'">Si los datos son correctos da click aquí </a>caso contrario actualiza los datos</p>';
+
         session([
-            'enterprise-saved-message' => 'Cambios guardados satisfactoriamente.',
+            'enterprise-saved-message' => $message,
             'type' => 'green',
         ]);
 

@@ -2,8 +2,8 @@
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session('enterprise-saved-message'))
-                <div class="bg-indigo-500 border border-indigo-400 text-white px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline">{{ session('enterprise-saved-message') }}</span>
+                <div class="bg-indigo-300 border border-indigo-200 text-white px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">{!! session('enterprise-saved-message') !!}</span>
                 </div>
                 @php session()->forget([ 'enterprise-saved-message', 'type' ]); @endphp
             @endif

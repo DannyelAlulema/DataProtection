@@ -31,6 +31,6 @@ class FileController extends Controller
         $timestamp = Carbon::now()->format('Y-m-d_His');
         $fileName = $data['enterprise']['ci_ruc'].'_'.$timestamp.'.pdf';
 
-        return $pdf->download($fileName);
+        return $data['paid'] ? $pdf->download($fileName) : $pdf->stream($fileName);
     }
 }

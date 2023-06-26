@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\UserEnterprise;
 use Livewire\Component;
-use Illuminate\Support\Facades\DB;
 
 class EnterprisesContainer extends Component
 {

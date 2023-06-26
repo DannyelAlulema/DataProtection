@@ -1,32 +1,12 @@
 <div>
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mt-3">
         @if (session('enterprise-message'))
-            <div class="bg-{{ session('type') }}-100 border border-{{ session('type') }}-400 text-{{ session('type') }}-700 px-4 py-3 rounded relative"
-                role="alert">
+            <div class="bg-{{ session('type') }}-100 border border-{{ session('type') }}-400 text-{{ session('type') }}-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Error!</strong>
                 <span class="block sm:inline">{{ session('enterprise-message') }}</span>
             </div>
             @php session()->forget([ 'enterprise-message', 'type' ]); @endphp
         @endif
-
-        <div class="flex justify-center items-center mt-3" style="padding: 10px">
-            <div class="w-1/2" style="margin: 0 25px 0 25px;">
-                <input wire:model="legal_representative" type="text"
-                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative') ? ' is-invalid' : '' }}"
-                    id="legal_representative" type="text" placeholder="Representante legal">
-                <div class="invalid-feedback">
-                    {{ $errors->first('legal_representative') }}
-                </div>
-            </div>
-            <div class="w-1/2" style="margin: 0 25px 0 25px;">
-                <input wire:model="email" type="text"
-                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                    id="email" type="text" placeholder="Email de la empresa">
-                <div class="invalid-feedback">
-                    {{ $errors->first('email') }}
-                </div>
-            </div>
-        </div>
 
         <div class="flex justify-center items-center mt-3" style="padding: 10px">
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
@@ -53,9 +33,36 @@
                     {{ $errors->first('phone_number') }}
                 </div>
             </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="email" type="text"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                    id="email" type="text" placeholder="Email de la empresa">
+                <div class="invalid-feedback">
+                    {{ $errors->first('email') }}
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-center items-center mt-3" style="padding: 10px">
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="legal_representative" type="text"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative') ? ' is-invalid' : '' }}"
+                    id="legal_representative" type="text" placeholder="Representante legal">
+                <div class="invalid-feedback">
+                    {{ $errors->first('legal_representative') }}
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <input wire:model="legal_representative_ci"
+                    class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative_ci') ? ' is-invalid' : '' }}"
+                    id="legal_representative_ci" type="text" placeholder="Número de cédula del representante legal">
+                <div class="invalid-feedback">
+                    {{ $errors->first('legal_representative_ci') }}
+                </div>
+            </div>
+        </div>
+
+        {{--<div class="flex justify-center items-center mt-3" style="padding: 10px">
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
                 <input wire:model="legal_representative_ci"
                     class="shadow appearance-none border mx-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline {{ $errors->has('legal_representative_ci') ? ' is-invalid' : '' }}"
@@ -80,7 +87,7 @@
                     {{ $errors->first('legal_representative_email') }}
                 </div>
             </div>
-        </div>
+        </div>--}}
 
         <div class="flex justify-center items-center mt-3" style="padding: 10px">
             <div class="w-1/2" style="margin: 0 25px 0 25px;">
@@ -178,11 +185,11 @@
                 </a>
             @endif
             @if (!$paid)
+                <button wire:click="save"
+                    class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">
+                    <i class="fa-solid fa-floppy-disk mr-2" style="font-size: 20px;"></i>Guardar
+                </button>
             @endif
-            <button wire:click="save"
-                class="inline-flex items-center px-1 py-1 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-4">
-                <i class="fa-solid fa-floppy-disk mr-2" style="font-size: 20px;"></i>Guardar
-            </button>
         </div>
     </div>
 </div>
