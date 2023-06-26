@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::get('/pre-register', function () {
     return view('web.preregister');
-});
+})->name('pre-register');
 
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified' ])->group(function () {
     Route::resource('appointments', AppointmentController::class);

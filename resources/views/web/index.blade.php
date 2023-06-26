@@ -5,7 +5,7 @@
         <div class="hero-container">
             <h1>Bienvenido</h1>
             <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
-            <a href="#" class="btn-get-started scrollto">Obtener Ley de Protección de Datos</a>
+            <a href="{{ route('pre-register') }}" class="btn-get-started scrollto">Obtener Ley de Protección de Datos</a>
             <a href="{{ route('login') }}" class="btn-get-started scrollto">Ya tengo la Ley de Protección de Datos</a>
         </div>
     </section><!-- End Hero -->
