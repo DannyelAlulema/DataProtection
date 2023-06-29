@@ -35,8 +35,12 @@ class EnterprisesContainer extends Component
 
     public function loadEnterprises()
     {
+        unset($this->enterprises);
         $this->enterprises = [];
 
         $this->enterprises = UserEnterprise::where('user_id', auth()->user()->id)->get()->toArray();
+
+        if (count($this->enterprises) == 0)
+            $this->addEnterprise();
     }
 }

@@ -48,7 +48,7 @@
 
         @if ($all)
             <div class="d-flex justify-content-center col-12 mt-3">
-                <a href="{{ route('register') }}" class="btn-learn-more">Continuar con el registro</a>
+                <buuton wire:load.desabled wire:click="confirmRegister" class="btn-learn-more">Continuar con el registro</buuton>
             </div>
         @endif
     </div>

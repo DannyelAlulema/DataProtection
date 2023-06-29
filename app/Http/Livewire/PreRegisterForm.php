@@ -47,4 +47,15 @@ class PreRegisterForm extends Component
             ]);
         }
     }
+
+    function confirmRegister()
+    {
+        session([
+            'sector_id' => $this->sector_id,
+            'personal_data_use_id' => $this->personal_data_use_id,
+            'personal_data_activity_id' => $this->personal_data_activity_id,
+        ]);
+
+        return redirect()->route('register');
+    }
 }
