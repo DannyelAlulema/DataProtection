@@ -170,6 +170,93 @@
             </div>
         </div>
 
+        <hr>
+
+        <div class="flex justify-center items-center mt-3" style="padding: 10px">
+
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    ¿Tu organización/empresa trata datos personales de empleados a través de una tercera persona? --- entiéndase como tercera persona a una agencia de manejo de nómina.
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    ¿Tu organización/empresa trata datos personales de candidatos? ---- Entiéndase por candidatos, las personas que envían su hoja de vida a tu organización/empresa.
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    ¿Tu organización trata datos personales de  proveedores? --- Entiéndase como proveedores a personas naturales, no jurídicas.
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center mt-3" style="padding: 10px">
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    Tu organización/empresa trata datos personales de clientes o potenciales clientes? ---- Entiéndase por clientes a todo tipo de persona natural
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    Tu organización/empresa trata datos personales de clientes o  potenciales clientes a través de una tercera persona? ---- Entiéndase por clientes a todo tipo de persona natural y como tercera persona a un contratista
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                <label class="block text-gray-700 text-sm font-bold mb-2" style="margin-bottom: 10px;">
+                    ¿Tu organización/empresa trata datos personales de empleados?
+                </label>
+                <div>
+                    <input type="radio">
+                    <label>Si</label>
+                </div>
+                <div>
+                    <input type="radio">
+                    <label>No</label>
+                </div>
+            </div>
+        </div>
+
         <div class="flex justify-start" style="padding: 10px">
             <p class="w-1/2" style="margin: 0 25px 0 25px;">
                 <b>Pago: </b>

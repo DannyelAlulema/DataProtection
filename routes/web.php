@@ -15,6 +15,10 @@ Route::get('/pre-register', function () {
     return view('web.preregister');
 })->name('pre-register');
 
+Route::get('/about-us', function () {
+    return view('web.about-us');
+})->name('about-us');
+
 Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified' ])->group(function () {
     Route::resource('appointments', AppointmentController::class);
     Route::resource('pay-requests', PayRequestController::class);
