@@ -12,6 +12,9 @@ Route::get('/', function () {
 });
 
 Route::get('/pre-register', function () {
+    if (auth()->user() != null)
+        abort(404);
+
     return view('web.preregister');
 })->name('pre-register');
 

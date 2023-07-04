@@ -44,17 +44,16 @@ class EnterpriseCard extends Component
             $this->personal_data_activity_id = ($enterprise->personal_data_activity_id == null) ? 0 : $enterprise->personal_data_activity_id;
 
             $this->paid = $userEnterprise->paid;
-        } else {
-            $this->sector_id = (session('sector_id')) ? session('sector_id') : null;
-            $this->personal_data_use_id = (session('personal_data_use_id')) ? session('personal_data_use_id') : null;
-            $this->personal_data_activity_id = (session('personal_data_activity_id')) ? session('personal_data_activity_id') : null;
-
-            session()->forget(['sector_id', 'personal_data_use_id', 'personal_data_activity_id']);
         }
-
         $this->sectors = Sector::all();
         $this->activities = PersonalDataActivity::all();
         $this->uses = PersonalDataUse::all();
+
+        $this->sector_id = (session('sector_id')) ? session('sector_id') : $this->sector_id;
+        $this->personal_data_use_id = (session('personal_data_use_id')) ? session('personal_data_use_id') : $this->personal_data_use_id;
+        $this->personal_data_activity_id = (session('personal_data_activity_id')) ? session('personal_data_activity_id') : $this->personal_data_activity_id;
+
+        session()->forget(['sector_id', 'personal_data_use_id', 'personal_data_activity_id']);
     }
 
     public function render()

@@ -24,6 +24,8 @@ class FileController extends Controller
             abort(404);
 
         $file = Str::lower('pdf.'.$this->numberToWord($document));
+        $file .= (!$data['paid']) ? '-censured' : '';
+
         $pdf = Pdf::loadView($file, compact('data'));
 
         $pdf->setPaper('A4', 'portrait');

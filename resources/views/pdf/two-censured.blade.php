@@ -108,7 +108,8 @@
         personales, o como un documento aparte, en cuyo caso se deberán recopilar los datos al final del mismo.
     </p>
     <p class="text">
-        En el campo denominado <strong>{{ $data['enterprise']['legal_representative'] }}</strong> se colocará el nombre de la persona que entrega sus datos
+        En el campo denominado <strong>{{ $data['enterprise']['legal_representative'] }}</strong> se colocará el nombre
+        de la persona que entrega sus datos
         personales.
     </p>
     <p class="text">
@@ -121,30 +122,34 @@
     </p>
 
     <p class="text">
-        <strong>{{ $data['enterprise']['legal_representative'] }}</strong> otorgo mi consentimiento para que <strong>{{ $data['enterprise']['bussines_name'] }}</strong> con RUC número <strong>{{ $data['enterprise']['ci_ruc'] }}</strong>,
-        ubicado en <strong>{{ $data['enterprise']['address'] }}</strong>, trate mis datos personales facilitados,
-        con el fin de proveer
-        del servicio y/o bienes solicitados, y cumplir con las obligaciones contractuales acordadas. Así también,
-        autorizo para que mis datos sean tratados con el fin que <strong>{{ $data['enterprise']['bussines_name'] }}</strong> oferte
-        sus servicios y bienes y realice encuestas de satisfacción, a través de aplicaciones de mensajería
-        instantánea, correo
-        electrónico y redes sociales. También autorizo para que la organización pueda compartir mis datos personales
+        <strong>{{ $data['enterprise']['legal_representative'] }}</strong> otorgo mi consentimiento para que
+        <strong>{{ $data['enterprise']['bussines_name'] }}</strong> con RUC número
+        <strong>{{ $data['enterprise']['ci_ruc'] }}</strong>,
+        ubicado en <strong>{{ $data['enterprise']['address'] }}</strong>, trate XXXXX XXXXXXX XXXXXXXXXXX XXXXXX XXXXX
+        XXXXXXXX XXXX XXX XXXX XXXXXX, y cumplir con las obligaciones contractuales acordadas. Así también,
+        autorizo para que mis datos sean tratados con el fin que
+        <strong>{{ $data['enterprise']['bussines_name'] }}</strong> oferte
+        XXXXXX XXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXXX XXXXXXXX XXXXXX XXXXXXXXXXXX organización pueda compartir mis
+        datos personales
         con
         terceros relacionados para que realicen el tratamiento como encargados.
     </p>
     <p class="text">
         La no entrega de los datos solicitados y consentimiento, no me permitirá gozar de los beneficios ofrecidos
-        por <strong>{{ $data['enterprise']['bussines_name'] }}</strong>, así como limitará la prestación del servicio y contratación de
+        por <strong>{{ $data['enterprise']['bussines_name'] }}</strong>, así como limitará la prestación del servicio y
+        contratación de
         bienes.
     </p>
     <p class="text">
-        Mis datos personales se conservarán y almacenarán en los ficheros o bases de datos de <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
+        XXXXX XXXXXXXXXXXXXX XXXXXXXXX XXXXXXXXX XXXXXXX XXX XXXX XXXX XXXXX
+        <strong>{{ $data['enterprise']['bussines_name'] }}</strong>
         conforme el tiempo establecido en su Política de Protección de Datos Personales
     </p>
     <p class="text">
-        Como titular de sus datos personales, podré ejercer los derechos de acceso, rectificación, oposición al
-        tratamiento y eliminación reconocidos en el Ley Orgánica de Protección de Datos Personales, mediante una
-        comunicación escrita a la dirección de correo electrónico <strong>{{ $data['enterprise']['email'] }}</strong>, o a las
+        Como titular de sus datos personales, podré ejercer los derechos de acceso, XXXXXXX XXXXXXXXXXX XXXXXXXXXXXXX
+        XXXXXXXXXXX XXXXXXXXXX XXXXXXXXX XXXXXXXXX XXXXXX XX, mediante una
+        comunicación escrita a la dirección de correo electrónico <strong>{{ $data['enterprise']['email'] }}</strong>, o
+        a las
         oficinas de <strong>{{ $data['enterprise']['bussines_name'] }}</strong> antes indicadas.
     </p>
 

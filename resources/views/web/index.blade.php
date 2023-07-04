@@ -5,8 +5,10 @@
         <div class="hero-container">
             <h1>Bienvenido</h1>
             <h2>LPD ipsum dolor sit amet, consectetur adipisicing elit.</h2>
-            <a href="{{ route('pre-register') }}" class="btn-get-started scrollto">Obtener Ley de Protección de Datos</a>
-            <a href="{{ route('login') }}" class="btn-get-started scrollto">Ya soy cliente</a>
+            @if (auth()->user() == null)
+                <a href="{{ route('pre-register') }}" class="btn-get-started scrollto">Obtener Ley de Protección de Datos</a>
+            @endif
+            <a href="{{ route('login') }}" class="btn-get-started scrollto">{{ (auth()->user() != null) ? __('Ir al panel') : __('Ya soy cliente') }}</a>
         </div>
     </section><!-- End Hero -->
 
