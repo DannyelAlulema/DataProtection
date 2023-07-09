@@ -7,6 +7,12 @@ DROP TABLE IF EXISTS `appointment_states` CASCADE
 DROP TABLE IF EXISTS `appointments` CASCADE
 ;
 
+DROP TABLE IF EXISTS `categories` CASCADE
+;
+
+DROP TABLE IF EXISTS `documents` CASCADE
+;
+
 DROP TABLE IF EXISTS `enterprises` CASCADE
 ;
 
@@ -59,9 +65,30 @@ CREATE TABLE `appointments`
 )
 ;
 
+CREATE TABLE `categories`
+(
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL,
+	`code` INT NOT NULL,
+	CONSTRAINT `PK_categories` PRIMARY KEY (`id` ASC)
+)
+;
+
+CREATE TABLE `documents`
+(
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`category_id` BIGINT NULL,
+	`code` VARCHAR(25) NULL,
+	`filename` VARCHAR(25) NULL,
+	`censured_filename` VARCHAR(25) NULL,
+	CONSTRAINT `PK_documents` PRIMARY KEY (`id` ASC)
+)
+;
+
 CREATE TABLE `enterprises`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`category_id` BIGINT NULL,
 	`sector_id` BIGINT NULL,
 	`personal_data_use_id` BIGINT NULL,
 	`personal_data_activity_id` BIGINT NULL,
@@ -75,6 +102,12 @@ CREATE TABLE `enterprises`
 	`legal_representative_ci` VARCHAR(10) NULL,
 	`legal_representative_phone` VARCHAR(10) NULL,
 	`legal_representative_email` VARCHAR(50) NULL,
+	`thirdPartyEmployees` BOOL NULL,
+	`candidateData` BOOL NULL,
+	`supplierData` BOOL NULL,
+	`customerData` BOOL NULL,
+	`thirdPartyCustomerData` BOOL NULL,
+	`employeeData` BOOL NULL,
 	`created_at` TIMESTAMP NULL,
 	`created_by` BIGINT NULL,
 	`updated_at` TIMESTAMP NULL,
@@ -115,6 +148,7 @@ CREATE TABLE `pay_requests`
 CREATE TABLE `personal_data_activities`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`category_id` BIGINT NOT NULL,
 	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_personal_data_uses` PRIMARY KEY (`id` ASC)
 )
@@ -123,6 +157,7 @@ CREATE TABLE `personal_data_activities`
 CREATE TABLE `personal_data_uses`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`category_id` BIGINT NOT NULL,
 	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_personal_data_uses` PRIMARY KEY (`id` ASC)
 )
@@ -131,6 +166,7 @@ CREATE TABLE `personal_data_uses`
 CREATE TABLE `sectors`
 (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`category_id` BIGINT NOT NULL,
 	`name` VARCHAR(255) NOT NULL,
 	CONSTRAINT `PK_sectors` PRIMARY KEY (`id` ASC)
 )
@@ -181,6 +217,14 @@ ALTER TABLE `appointments`
  ADD INDEX `IXFK_appointments_user_enterprises` (`user_enterprise_id` ASC)
 ;
 
+ALTER TABLE `documents` 
+ ADD INDEX `IXFK_documents_categories` (`category_id` ASC)
+;
+
+ALTER TABLE `enterprises` 
+ ADD INDEX `IXFK_enterprises_categories` (`category_id` ASC)
+;
+
 ALTER TABLE `enterprises` 
  ADD INDEX `IXFK_enterprises_personal_data_activities` (`personal_data_activity_id` ASC)
 ;
@@ -201,6 +245,18 @@ ALTER TABLE `pay_requests`
  ADD INDEX `IXFK_paid_requests_user_enterprises` (`user_enterprise_id` ASC)
 ;
 
+ALTER TABLE `personal_data_activities` 
+ ADD INDEX `IXFK_personal_data_activities_categories` (`category_id` ASC)
+;
+
+ALTER TABLE `personal_data_uses` 
+ ADD INDEX `IXFK_personal_data_uses_categories` (`category_id` ASC)
+;
+
+ALTER TABLE `sectors` 
+ ADD INDEX `IXFK_sectors_categories` (`category_id` ASC)
+;
+
 ALTER TABLE `user_enterprises` 
  ADD INDEX `IXFK_user_enterprises_enterprises` (`enterprise_id` ASC)
 ;
@@ -217,6 +273,16 @@ ALTER TABLE `appointments`
 ALTER TABLE `appointments` 
  ADD CONSTRAINT `FK_appointments_user_enterprises`
 	FOREIGN KEY (`user_enterprise_id`) REFERENCES `user_enterprises` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `documents` 
+ ADD CONSTRAINT `FK_documents_categories`
+	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `enterprises` 
+ ADD CONSTRAINT `FK_enterprises_categories`
+	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
 ALTER TABLE `enterprises` 
@@ -242,6 +308,21 @@ ALTER TABLE `pay_requests`
 ALTER TABLE `pay_requests` 
  ADD CONSTRAINT `FK_paid_requests_user_enterprises`
 	FOREIGN KEY (`user_enterprise_id`) REFERENCES `user_enterprises` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `personal_data_activities` 
+ ADD CONSTRAINT `FK_personal_data_activities_categories`
+	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `personal_data_uses` 
+ ADD CONSTRAINT `FK_personal_data_uses_categories`
+	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `sectors` 
+ ADD CONSTRAINT `FK_sectors_categories`
+	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
 ALTER TABLE `user_enterprises` 

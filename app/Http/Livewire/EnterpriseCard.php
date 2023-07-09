@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\PersonalDataActivity;
 use App\Models\PersonalDataUse;
@@ -16,8 +17,11 @@ class EnterpriseCard extends Component
     use DocumentValidation;
 
     public $enterpriseId, $userEnterpriseId;
-    public $address, $bussines_name, $description, $ci_ruc, $sector_id, $personal_data_use_id, $personal_data_activity_id, $email, $paid, $phone_number, $legal_representative, $legal_representative_ci, $legal_representative_phone, $legal_representative_email;
-    public $sectors, $activities, $uses;
+    public $address, $bussines_name, $description, $ci_ruc;
+    public $category_id ,$sector_id, $personal_data_use_id, $personal_data_activity_id;
+    public $email, $paid, $phone_number, $legal_representative, $legal_representative_ci, $legal_representative_phone, $legal_representative_email;
+    public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData;
+    public $categories, $sectors, $activities, $uses, $catSelected;
 
     public function mount($enterpriseId, $userEnterpriseId)
     {
@@ -39,21 +43,27 @@ class EnterpriseCard extends Component
             $this->ci_ruc = $enterprise->ci_ruc;
             $this->phone_number = $enterprise->phone_number;
             $this->email = $enterprise->email;
+            $this->category_id = ($enterprise->category_id == null) ? 0 : $enterprise->category_id;
             $this->sector_id = ($enterprise->sector_id == null) ? 0 : $enterprise->sector_id;
             $this->personal_data_use_id = ($enterprise->personal_data_use_id == null) ? 0 : $enterprise->personal_data_use_id;
             $this->personal_data_activity_id = ($enterprise->personal_data_activity_id == null) ? 0 : $enterprise->personal_data_activity_id;
 
+            $this->thirdPartyEmployees = $enterprise->thirdPartyEmployees;
+            $this->candidateData = $enterprise->thirdPartyEmployees;
+            $this->supplierData = $enterprise->thirdPartyEmployees;
+            $this->customerData = $enterprise->thirdPartyEmployees;
+            $this->thirdPartyCustomerData = $enterprise->thirdPartyEmployees;
+            $this->employeeData = $enterprise->thirdPartyEmployees;
+
             $this->paid = $userEnterprise->paid;
+        } else {
+            $this->category_id = (session('category_id')) ?? session('category_id');
+            $this->sector_id = (session('sector_id')) ?? session('sector_id');
+            $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
+            $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
         }
-        $this->sectors = Sector::all();
-        $this->activities = PersonalDataActivity::all();
-        $this->uses = PersonalDataUse::all();
 
-        $this->sector_id = (session('sector_id')) ? session('sector_id') : $this->sector_id;
-        $this->personal_data_use_id = (session('personal_data_use_id')) ? session('personal_data_use_id') : $this->personal_data_use_id;
-        $this->personal_data_activity_id = (session('personal_data_activity_id')) ? session('personal_data_activity_id') : $this->personal_data_activity_id;
-
-        session()->forget(['sector_id', 'personal_data_use_id', 'personal_data_activity_id']);
+        $this->categories = Category::all();
     }
 
     public function render()
@@ -66,6 +76,7 @@ class EnterpriseCard extends Component
         $new = false;
 
         $rules = [
+            'category_id' => 'required|integer',
             'sector_id' => 'required|integer',
             'personal_data_use_id' => 'required|integer',
             'personal_data_activity_id' => 'required|integer',
@@ -78,6 +89,12 @@ class EnterpriseCard extends Component
             'legal_representative_ci' => 'required|max:10',
             //'legal_representative_phone' => 'required|max:10',
             //'legal_representative_email' => 'required|max:50',
+            'thirdPartyEmployees' => 'min:0|max:1|integer',
+            'candidateData' => 'min:0|max:1|integer',
+            'supplierData' => 'min:0|max:1|integer',
+            'customerData' => 'min:0|max:1|integer',
+            'thirdPartyCustomerData' => 'min:0|max:1|integer',
+            'employeeData' => 'min:0|max:1|integer'
         ];
         $rules['ci_ruc'] = ($this->enterpriseId == 0) ? 'required|max:13|min:10|unique:enterprises,ci_ruc' : 'required|max:13|min:10';
 
@@ -115,9 +132,10 @@ class EnterpriseCard extends Component
             DB::table('user_enterprises')
                 ->where('enterprise_id', $enterprise->id)
                 ->where('user_id', auth()->user()->id)
-            ->update(['paid' => false]);
+                ->update(['paid' => false]);
 
             $new = true;
+            session()->forget(['category_id', 'sector_id', 'personal_data_use_id', 'personal_data_activity_id']);
         } else {
             $enterprise = Enterprise::findOrFail($this->enterpriseId);
             $enterprise->fill($validated);
@@ -136,7 +154,7 @@ class EnterpriseCard extends Component
         $message = $new
             ? '<p>Empresa registrada exitosamente, por favor verificar si todos los datos son correctos antes de avanzar en el siguiente paso.</p>'
             : '<p>Datos actualizados exitosamente, por favor verificar si todos los datos son correctos antes de avanzar en el siguiente paso.</p>';
-        $message .= '<p><a style="text-decoration: underline;" href="'.route('dashboard').'">Si los datos son correctos da click aquí </a>caso contrario actualiza los datos</p>';
+        $message .= '<p><a style="text-decoration: underline;" href="' . route('dashboard') . '">Si los datos son correctos da click aquí </a>caso contrario actualiza los datos</p>';
 
         session([
             'enterprise-saved-message' => $message,
@@ -144,5 +162,16 @@ class EnterpriseCard extends Component
         ]);
 
         $this->emit('enterpriseSaved');
+    }
+
+    function setCategory()
+    {
+        if ($this->category_id != null && $this->category_id != 0) {
+            $this->catSelected = Category::find($this->category_id);
+
+            $this->sectors = Sector::where('category_id', $this->category_id)->get();
+            $this->activities = PersonalDataActivity::where('category_id', $this->category_id)->get();
+            $this->uses = PersonalDataUse::where('category_id', $this->category_id)->get();
+        }
     }
 }

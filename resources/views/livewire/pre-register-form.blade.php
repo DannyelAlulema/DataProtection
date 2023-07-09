@@ -48,7 +48,7 @@
 
         @if ($all)
             <div class="d-flex justify-content-center col-12 mt-3">
-                <buuton wire:load.desabled wire:click="confirmRegister" class="btn-learn-more">Continuar con el registro</buuton>
+                <buuton wire:load.desabled wire:click="confirmRegister" class="btn-learn-more" style="cursor: pointer;">Continuar con el registro</buuton>
             </div>
         @endif
     </div>

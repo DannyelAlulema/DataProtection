@@ -10,6 +10,7 @@ class Enterprise extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
         'sector_id',
         'personal_data_use_id',
         'personal_data_activity_id',
@@ -23,6 +24,12 @@ class Enterprise extends Model
         'legal_representative_ci',
         'legal_representative_phone',
         'legal_representative_email',
+        'thirdPartyEmployees',
+        'candidateData',
+        'supplierData',
+        'customerData',
+        'thirdPartyCustomerData',
+        'employeeData'
     ];
 
     public function users()
