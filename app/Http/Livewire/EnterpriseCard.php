@@ -58,9 +58,18 @@ class EnterpriseCard extends Component
             $this->paid = $userEnterprise->paid;
         } else {
             $this->category_id = (session('category_id')) ?? session('category_id');
+            $this->setCategory();
+
             $this->sector_id = (session('sector_id')) ?? session('sector_id');
             $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
             $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
+
+            $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
+            $this->candidateData = (session('candidateData')) ?? session('candidateData');
+            $this->supplierData = (session('supplierData')) ?? session('supplierData');
+            $this->customerData = (session('customerData')) ?? session('customerData');
+            $this->thirdPartyCustomerData = (session('thirdPartyCustomerData')) ?? session('thirdPartyCustomerData');
+            $this->employeeData = (session('employeeData')) ?? session('employeeData');
         }
 
         $this->categories = Category::all();
