@@ -22,6 +22,7 @@ class EnterpriseCard extends Component
     public $email, $paid, $phone_number, $legal_representative, $legal_representative_ci, $legal_representative_phone, $legal_representative_email;
     public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData;
     public $categories, $sectors, $activities, $uses, $catSelected;
+    public $medic_dependence, $medic_porpose_data;
 
     public function mount($enterpriseId, $userEnterpriseId)
     {
@@ -60,16 +61,22 @@ class EnterpriseCard extends Component
             $this->category_id = (session('category_id')) ?? session('category_id');
             $this->setCategory();
 
-            $this->sector_id = (session('sector_id')) ?? session('sector_id');
-            $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
-            $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
+            if ($this->catSelected->code == 1) {
+                $this->sector_id = (session('sector_id')) ?? session('sector_id');
+                $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
+                $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
 
-            $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
-            $this->candidateData = (session('candidateData')) ?? session('candidateData');
-            $this->supplierData = (session('supplierData')) ?? session('supplierData');
-            $this->customerData = (session('customerData')) ?? session('customerData');
-            $this->thirdPartyCustomerData = (session('thirdPartyCustomerData')) ?? session('thirdPartyCustomerData');
-            $this->employeeData = (session('employeeData')) ?? session('employeeData');
+                $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
+                $this->candidateData = (session('candidateData')) ?? session('candidateData');
+                $this->supplierData = (session('supplierData')) ?? session('supplierData');
+                $this->customerData = (session('customerData')) ?? session('customerData');
+                $this->thirdPartyCustomerData = (session('thirdPartyCustomerData')) ?? session('thirdPartyCustomerData');
+                $this->employeeData = (session('employeeData')) ?? session('employeeData');
+            } elseif ($this->catSelected->code == 2) {
+                $this->medic_dependence = (session('medic_dependence')) ?? session('medic_dependence');
+                $this->medic_porpose_data = (session('medic_porpose_data')) ?? session('medic_porpose_data');
+            }
+
         }
 
         $this->categories = Category::all();

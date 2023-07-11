@@ -15,6 +15,7 @@ class PreRegisterForm extends Component
     public $category_id, $sector_id , $personal_data_use_id, $personal_data_activity_id;
     public $catSelected;
     public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData;
+    public $medic_dependence, $medic_porpose_data;
     public $all;
 
     function mount()
@@ -34,28 +35,52 @@ class PreRegisterForm extends Component
 
     function verifySelected()
     {
-        if ($this->sector_id != null && $this->personal_data_use_id != null && $this->personal_data_activity_id != null)
-        {
-            $this->all = true;
-            if ($this->sector_id == 0 && $this->personal_data_use_id == 0 && $this->personal_data_activity_id == 0)
-                $message = '¡Su empresa ya puede acceder a la ley de protección de datos! Solo complete el registro.';
-            else
-                $message = '¡Su empresa necesita una asesoría personalizada! Para agendarla complete el registro.';
+        if ($this->catSelected->code == 1) {
+            if ($this->sector_id != null && $this->personal_data_use_id != null && $this->personal_data_activity_id != null)
+            {
+                $this->all = true;
+                if ($this->sector_id == 0 && $this->personal_data_use_id == 0 && $this->personal_data_activity_id == 0)
+                    $message = '¡Su empresa ya puede acceder a la ley de protección de datos! Solo complete el registro.';
+                else
+                    $message = '¡Su empresa necesita una asesoría personalizada! Para agendarla complete el registro.';
 
-            session([
-                'message' => $message,
-                'type' => 'success'
-            ]);
+                session([
+                    'message' => $message,
+                    'type' => 'success'
+                ]);
+            }
+        } elseif ($this->catSelected->code == 2) {
+            if ($this->medic_dependence != null) {
+                if ((bool) $this->medic_dependence) {
+                    $message = 'Lastimosamente esta herramienta no es para ti.';
+                } else {
+                    if ($this->medic_porpose_data != null) {
+                        if ((integer) $this->medic_porpose_data == 3) {
+                            $this->all = false;
+                            $message = 'Lastimosamente esta herramienta no es para ti.';
+                        } else {
+                            $this->all = true;
+                            $message = '¡Su empresa ya puede acceder a la ley de protección de datos! Solo complete el registro.';
+                        }
+
+                        session([
+                            'message' => $message,
+                            'type' => 'success'
+                        ]);
+                    }
+                }
+            }
         }
     }
 
     function confirmRegister()
     {
-        session([
+        $auxArr = ($this->catSelected->code == 1) ? [
+            'category_id' => $this->category_id,
+
             'sector_id' => $this->sector_id,
             'personal_data_use_id' => $this->personal_data_use_id,
             'personal_data_activity_id' => $this->personal_data_activity_id,
-            'category_id' => $this->category_id,
 
             'thirdPartyEmployees' => $this->thirdPartyEmployees,
             'candidateData' => $this->candidateData,
@@ -63,7 +88,13 @@ class PreRegisterForm extends Component
             'customerData' => $this->customerData,
             'thirdPartyCustomerData' => $this->thirdPartyCustomerData,
             'employeeData' => $this->employeeData,
-        ]);
+        ] : [
+            'category_id' => $this->category_id,
+
+            'medic_dependence' => $this->medic_dependence,
+            'medic_porpose_data' => $this->medic_porpose_data
+        ];
+        session($auxArr);
 
         return redirect()->route('register');
     }

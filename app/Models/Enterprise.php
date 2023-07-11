@@ -51,4 +51,8 @@ class Enterprise extends Model
     {
         return $this->belongsTo(Sector::class, 'sector_id');
     }
+
+    function category() {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }
