@@ -21,6 +21,10 @@ class EnterpriseController extends Controller
     public function pay($user_enterprise_id)
     {
         $userEnterprise = UserEnterprise::with('enterprise')->find($user_enterprise_id);
+
+        if ($userEnterprise->toArray()['paid'])
+            abort(404);
+
         $payRequests = PayRequest::with('state')
             ->whereRelation('state', 'code', 1)
             ->where('user_enterprise_id', $user_enterprise_id)

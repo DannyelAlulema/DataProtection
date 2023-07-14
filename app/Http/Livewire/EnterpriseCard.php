@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Enterprise;
+use App\Models\MedicDataPorpose;
 use App\Models\PersonalDataActivity;
 use App\Models\PersonalDataUse;
 use App\Models\Sector;
@@ -20,9 +21,9 @@ class EnterpriseCard extends Component
     public $address, $bussines_name, $description, $ci_ruc;
     public $category_id ,$sector_id, $personal_data_use_id, $personal_data_activity_id;
     public $email, $paid, $phone_number, $legal_representative, $legal_representative_ci, $legal_representative_phone, $legal_representative_email;
-    public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData;
-    public $categories, $sectors, $activities, $uses, $catSelected;
-    public $medic_dependence, $medic_porpose_data;
+    public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData, $third_party_bussines_name, $third_party_ci_ruc;
+    public $medicDataPorposes, $categories, $sectors, $activities, $uses, $catSelected;
+    public $medic_dependence, $medic_data_porpose_id;
 
     public function mount($enterpriseId, $userEnterpriseId)
     {
@@ -50,33 +51,42 @@ class EnterpriseCard extends Component
             $this->personal_data_activity_id = ($enterprise->personal_data_activity_id == null) ? 0 : $enterprise->personal_data_activity_id;
 
             $this->thirdPartyEmployees = $enterprise->thirdPartyEmployees;
-            $this->candidateData = $enterprise->thirdPartyEmployees;
-            $this->supplierData = $enterprise->thirdPartyEmployees;
-            $this->customerData = $enterprise->thirdPartyEmployees;
-            $this->thirdPartyCustomerData = $enterprise->thirdPartyEmployees;
-            $this->employeeData = $enterprise->thirdPartyEmployees;
+            $this->candidateData = $enterprise->candidateData;
+            $this->supplierData = $enterprise->supplierData;
+            $this->customerData = $enterprise->customerData;
+            $this->thirdPartyCustomerData = $enterprise->thirdPartyCustomerData;
+            $this->employeeData = $enterprise->employeeData;
+
+            $this->medic_data_porpose_id = $enterprise->medic_data_porpose_id;
+            $this->medic_dependence = $enterprise->medic_dependence;
+
+            $this->third_party_bussines_name = $enterprise->third_party_bussines_name;
+            $this->third_party_ci_ruc = $enterprise->third_party_ci_ruc;
 
             $this->paid = $userEnterprise->paid;
-        } else {
-            $this->category_id = (session('category_id')) ?? session('category_id');
+
             $this->setCategory();
+        } else {
+            if (session('category_id') ) {
+                $this->category_id = (session('category_id')) ?? session('category_id');
+                $this->catSelected = Category::find($this->category_id);
+                $this->setCategory();
+                if ($this->catSelected->code == 1) {
+                    $this->sector_id = (session('sector_id')) ?? session('sector_id');
+                    $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
+                    $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
 
-            if ($this->catSelected->code == 1) {
-                $this->sector_id = (session('sector_id')) ?? session('sector_id');
-                $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
-                $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
-
-                $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
-                $this->candidateData = (session('candidateData')) ?? session('candidateData');
-                $this->supplierData = (session('supplierData')) ?? session('supplierData');
-                $this->customerData = (session('customerData')) ?? session('customerData');
-                $this->thirdPartyCustomerData = (session('thirdPartyCustomerData')) ?? session('thirdPartyCustomerData');
-                $this->employeeData = (session('employeeData')) ?? session('employeeData');
-            } elseif ($this->catSelected->code == 2) {
-                $this->medic_dependence = (session('medic_dependence')) ?? session('medic_dependence');
-                $this->medic_porpose_data = (session('medic_porpose_data')) ?? session('medic_porpose_data');
+                    $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
+                    $this->candidateData = (session('candidateData')) ?? session('candidateData');
+                    $this->supplierData = (session('supplierData')) ?? session('supplierData');
+                    $this->customerData = (session('customerData')) ?? session('customerData');
+                    $this->thirdPartyCustomerData = (session('thirdPartyCustomerData')) ?? session('thirdPartyCustomerData');
+                    $this->employeeData = (session('employeeData')) ?? session('employeeData');
+                } elseif ($this->catSelected->code == 2) {
+                    $this->medic_dependence = (session('medic_dependence')) ?? session('medic_dependence');
+                    $this->medic_data_porpose_id = (session('medic_data_porpose_id')) ?? session('medic_data_porpose_id');
+                }
             }
-
         }
 
         $this->categories = Category::all();
@@ -93,24 +103,27 @@ class EnterpriseCard extends Component
 
         $rules = [
             'category_id' => 'required|integer',
-            'sector_id' => 'required|integer',
-            'personal_data_use_id' => 'required|integer',
-            'personal_data_activity_id' => 'required|integer',
+            'sector_id' => 'integer|nullable',
+            'personal_data_use_id' => 'integer|nullable',
+            'personal_data_activity_id' => 'integer|nullable',
+            'medic_data_porpose_id' => 'integer|nullable',
             'address' => 'required|max:255',
             'bussines_name' => 'required|max:100',
-            'description' => 'required|max:255',
+            'description' => 'max:255|nullable',
             'email' => 'required|email|max:50',
             'phone_number' => 'required|max:10',
-            'legal_representative' => 'required|max:50',
-            'legal_representative_ci' => 'required|max:10',
-            //'legal_representative_phone' => 'required|max:10',
-            //'legal_representative_email' => 'required|max:50',
-            'thirdPartyEmployees' => 'min:0|max:1|integer',
-            'candidateData' => 'min:0|max:1|integer',
-            'supplierData' => 'min:0|max:1|integer',
-            'customerData' => 'min:0|max:1|integer',
-            'thirdPartyCustomerData' => 'min:0|max:1|integer',
-            'employeeData' => 'min:0|max:1|integer'
+            'legal_representative' => 'max:50|nullable',
+            'legal_representative_ci' => 'max:10|nullable',
+
+            'thirdPartyEmployees' => 'min:0|max:1|integer|nullable',
+            'candidateData' => 'min:0|max:1|integer|nullable',
+            'supplierData' => 'min:0|max:1|integer|nullable',
+            'customerData' => 'min:0|max:1|integer|nullable',
+            'thirdPartyCustomerData' => 'min:0|max:1|integer|nullable',
+            'employeeData' => 'min:0|max:1|integer|nullable',
+            'medic_dependence' => 'integer|max:1|min:0|nullable',
+            'third_party_bussines_name' => 'max:50|nullable',
+            'third_party_ci_ruc' => 'max:13|nullable'
         ];
         $rules['ci_ruc'] = ($this->enterpriseId == 0) ? 'required|max:13|min:10|unique:enterprises,ci_ruc' : 'required|max:13|min:10';
 
@@ -124,13 +137,26 @@ class EnterpriseCard extends Component
             return;
         }
 
-        if (!$this->validCi($validated['ci_ruc'])) {
-            session([
-                'enterprise-message' => 'Numero de cédula del representante invalido.',
-                'type' => 'red',
-            ]);
-            return;
+        if ($validated['legal_representative_ci'] != null) {
+            if (!$this->validCi($validated['legal_representative_ci'])) {
+                session([
+                    'enterprise-message' => 'Numero de cédula del representante invalido.',
+                    'type' => 'red',
+                ]);
+                return;
+            }
         }
+
+        if ($validated['third_party_ci_ruc'] != null) {
+            if (!$this->validCi($validated['third_party_ci_ruc'])) {
+                session([
+                    'enterprise-message' => 'RUC de tercerizadora invalido.',
+                    'type' => 'red',
+                ]);
+                return;
+            }
+        }
+
 
         $validated['sector_id'] = ($validated['sector_id'] == 0) ? null : $validated['sector_id'];
         $validated['personal_data_use_id'] = ($validated['personal_data_use_id'] == 0) ? null : $validated['personal_data_use_id'];
@@ -184,6 +210,7 @@ class EnterpriseCard extends Component
     {
         if ($this->category_id != null && $this->category_id != 0) {
             $this->catSelected = Category::find($this->category_id);
+            $this->medicDataPorposes = MedicDataPorpose::all();
 
             $this->sectors = Sector::where('category_id', $this->category_id)->get();
             $this->activities = PersonalDataActivity::where('category_id', $this->category_id)->get();

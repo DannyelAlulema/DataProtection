@@ -9,38 +9,39 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="flex-column" style="padding: 10px">
-                    <div class="flex justify-center items-center">
-                        <strong>{{ $userEnterprise->enterprise->bussines_name }}</strong>
-                    </div>
-                    <p>Detalle de la transaccion</p>
-                    <div class="flex justify-center items-center" style="padding: 10px">
-                        <div class="w-1/2" style="margin: 0 25px 0 25px;">
-                            <strong>Tranferencia:</strong>
-                            <br>
-                            Subtotal: $XX.XX
-                            <br>
-                            IVA: $XX.XX
-                            <br>
-                            Total: $XX.XX
-                        </div>
-                        <div class="w-1/2" style="margin: 0 25px 0 25px;">
-                            <strong>Tarjeta de Crédito o Débito:</strong>
-                            <br>
-                            Subtotal: $XX.XX
-                            <br>
-                            IVA: $XX.XX
-                            <br>
-                            Uso de tarjeta: $XX.XX
-                            <br>
-                            Total: $XX.XX
-                        </div>
-                    </div>
-                    <i class="mt-2" style="color: red;">Tener en cuenta los valores a pagar según el tipo de transacción a ejecutar</i>
-                    <hr>
                     @if (count($payRequests) == 0)
+                        <div class="flex justify-center items-center">
+                            <strong>{{ $userEnterprise->enterprise->bussines_name }}</strong>
+                        </div>
+                        <p>Detalle de la transaccion</p>
+                        <div class="flex justify-center items-center" style="padding: 10px">
+                            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                                <strong>Tranferencia:</strong>
+                                <br>
+                                Subtotal: $XX.XX
+                                <br>
+                                IVA: $XX.XX
+                                <br>
+                                Total: $XX.XX
+                            </div>
+                            <div class="w-1/2" style="margin: 0 25px 0 25px;">
+                                <strong>Tarjeta de Crédito o Débito:</strong>
+                                <br>
+                                Subtotal: $XX.XX
+                                <br>
+                                IVA: $XX.XX
+                                <br>
+                                Uso de tarjeta: $XX.XX
+                                <br>
+                                Total: $XX.XX
+                            </div>
+                        </div>
+                        <i class="mt-2" style="color: red;">Tener en cuenta los valores a pagar según el tipo de
+                            transacción a ejecutar</i>
+                        <hr>
                         <p class="mt-3">Pago con tarjeta</p>
-                        <form action="{{-- route('') --}}" class="flex justify-center items-center" style="padding: 10px"
-                            method="POST">
+                        <form action="{{-- route('') --}}" class="flex justify-center items-center"
+                            style="padding: 10px" method="POST">
                             @csrf
                             <input type="hidden" name="user_enterprise_id" value="{{ $userEnterprise->id }}">
                             <div class="w-1/2" style="margin: 0 25px 0 25px;">

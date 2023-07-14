@@ -16,6 +16,9 @@ DROP TABLE IF EXISTS `documents` CASCADE
 DROP TABLE IF EXISTS `enterprises` CASCADE
 ;
 
+DROP TABLE IF EXISTS `medic_data_porposes` CASCADE
+;
+
 DROP TABLE IF EXISTS `pay_request_states` CASCADE
 ;
 
@@ -92,6 +95,7 @@ CREATE TABLE `enterprises`
 	`sector_id` BIGINT NULL,
 	`personal_data_use_id` BIGINT NULL,
 	`personal_data_activity_id` BIGINT NULL,
+	`medic_data_porpose_id` BIGINT NULL,
 	`address` VARCHAR(255) NULL,
 	`bussines_name` VARCHAR(100) NULL,
 	`description` VARCHAR(255) NULL,
@@ -108,6 +112,7 @@ CREATE TABLE `enterprises`
 	`customerData` BOOL NULL,
 	`thirdPartyCustomerData` BOOL NULL,
 	`employeeData` BOOL NULL,
+	`medic_dependence` BOOL NULL,
 	`created_at` TIMESTAMP NULL,
 	`created_by` BIGINT NULL,
 	`updated_at` TIMESTAMP NULL,
@@ -115,6 +120,15 @@ CREATE TABLE `enterprises`
 	`deleted_at` TIMESTAMP NULL,
 	`deleted_by` BIGINT NULL,
 	CONSTRAINT `PK_enterprises` PRIMARY KEY (`id` ASC)
+)
+;
+
+CREATE TABLE `medic_data_porposes`
+(
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NULL,
+	`code` SMALLINT NULL,
+	CONSTRAINT `PK_medic_data_porposes` PRIMARY KEY (`id` ASC)
 )
 ;
 
@@ -226,6 +240,10 @@ ALTER TABLE `enterprises`
 ;
 
 ALTER TABLE `enterprises` 
+ ADD INDEX `IXFK_enterprises_medic_data_porposes` (`medic_data_porpose_id` ASC)
+;
+
+ALTER TABLE `enterprises` 
  ADD INDEX `IXFK_enterprises_personal_data_activities` (`personal_data_activity_id` ASC)
 ;
 
@@ -283,6 +301,11 @@ ALTER TABLE `documents`
 ALTER TABLE `enterprises` 
  ADD CONSTRAINT `FK_enterprises_categories`
 	FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE Restrict ON UPDATE Restrict
+;
+
+ALTER TABLE `enterprises` 
+ ADD CONSTRAINT `FK_enterprises_medic_data_porposes`
+	FOREIGN KEY (`medic_data_porpose_id`) REFERENCES `medic_data_porposes` (`id`) ON DELETE Restrict ON UPDATE Restrict
 ;
 
 ALTER TABLE `enterprises` 

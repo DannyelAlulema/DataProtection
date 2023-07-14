@@ -6,6 +6,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PayRequestController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Jetstream;
 
 Route::get('/', function () {
     return view('web.index');

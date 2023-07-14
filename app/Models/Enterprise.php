@@ -14,6 +14,7 @@ class Enterprise extends Model
         'sector_id',
         'personal_data_use_id',
         'personal_data_activity_id',
+        'medic_data_porpose_id',
         'address',
         'bussines_name',
         'description',
@@ -29,7 +30,10 @@ class Enterprise extends Model
         'supplierData',
         'customerData',
         'thirdPartyCustomerData',
-        'employeeData'
+        'employeeData',
+        'medic_dependence',
+        'third_party_bussines_name',
+        'third_party_ci_ruc'
     ];
 
     public function users()
