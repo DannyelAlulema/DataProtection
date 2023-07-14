@@ -24,7 +24,8 @@ class FileController extends Controller
             abort(404);
 
         $file = Str::lower('pdf.'.$this->numberToWord($document));
-        $file .= (!$data['paid']) ? '-censured' : '';
+        //$file .= (!$data['paid']) ? '-censured' : '';
+        $file = (!$data['paid']) ? 'pdf.two-censured' : $file; // Eliminar
 
         $pdf = Pdf::loadView($file, compact('data'));
 
