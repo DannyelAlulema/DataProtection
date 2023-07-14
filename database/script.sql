@@ -113,6 +113,8 @@ CREATE TABLE `enterprises`
 	`thirdPartyCustomerData` BOOL NULL,
 	`employeeData` BOOL NULL,
 	`medic_dependence` BOOL NULL,
+	`third_party_bussines_name` VARCHAR(50) NULL,
+	`third_party_ci_ruc` VARCHAR(13) NULL,
 	`created_at` TIMESTAMP NULL,
 	`created_by` BIGINT NULL,
 	`updated_at` TIMESTAMP NULL,
