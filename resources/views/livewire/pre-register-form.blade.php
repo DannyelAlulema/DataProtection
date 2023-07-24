@@ -40,7 +40,7 @@
                             @endif
                         </select>
                     </div>
-                    @if (($sector_id != null && $sector_id == 0) || $all)
+                    @if ($sector_id != null || $all)
                         <div class="form-group mt-3">
                             <label for="personal_data_use" class="form-label">¿Tu organización/empresa trata alguno de los
                                 datos
@@ -57,7 +57,7 @@
                             </select>
                         </div>
                     @endif
-                    @if (($personal_data_use_id != null && $personal_data_use_id == 0) || $all)
+                    @if ($personal_data_use_id != null || $all)
                         <div class="form-group mt-3">
                             <label for="personal_data_activities" class="form-label">¿Tu organización/empresa realiza alguno
                                 de

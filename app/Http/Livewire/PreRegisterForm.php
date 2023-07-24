@@ -44,7 +44,7 @@ class PreRegisterForm extends Component
                 $this->all = true;
                 if ($this->sector_id == 0 && $this->personal_data_use_id == 0 && $this->personal_data_activity_id == 0)
                     $message = '¡Su empresa ya puede acceder a la ley de protección de datos! Solo complete el registro.';
-                elseif ($this->sector_id != 0 || $this->personal_data_use_id != 0 || $this->personal_data_activity_id != 0)
+                else
                     $message = '¡Su empresa necesita una asesoría personalizada! Para agendarla complete el registro.';
 
                 session([
