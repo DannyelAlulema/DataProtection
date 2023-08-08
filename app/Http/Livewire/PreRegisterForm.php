@@ -12,9 +12,12 @@ use App\Models\Sector;
 
 class PreRegisterForm extends Component
 {
+    public $address, $bussines_name, $description, $ci_ruc;
+    public $email, $phone_number, $legal_representative, $legal_representative_ci;
+
     public $categories, $sectors, $activities, $uses;
     public $category_id, $sector_id , $personal_data_use_id, $personal_data_activity_id;
-    public $catSelected;
+    public $catSelected = null;
     public $thirdPartyEmployees, $candidateData, $supplierData, $customerData, $thirdPartyCustomerData, $employeeData;
     public $medicDataPorposes, $medic_dependence, $medic_data_porpose_id;
     public $all;
@@ -54,7 +57,7 @@ class PreRegisterForm extends Component
             }
         } elseif ($this->catSelected->code == 2) {
             if ($this->medic_dependence != null) {
-                if ((bool) $this->medic_dependence) {
+                if (!(bool) $this->medic_dependence) {
                     $message = 'Lastimosamente esta herramienta no es para ti.';
                 } else {
                     if ($this->medic_data_porpose_id != null) {
@@ -82,6 +85,10 @@ class PreRegisterForm extends Component
         $auxArr = ($this->catSelected->code == 1) ? [
             'category_id' => $this->category_id,
 
+            'description' => $this->description,
+            'legal_representative' => $this->legal_representative,
+            'legal_representative_ci' => $this->legal_representative_ci,
+
             'sector_id' => $this->sector_id,
             'personal_data_use_id' => $this->personal_data_use_id,
             'personal_data_activity_id' => $this->personal_data_activity_id,
@@ -100,6 +107,13 @@ class PreRegisterForm extends Component
         ];
 
         $auxArr['pre-register'] = true;
+
+        $auxArr['address'] = $this->address;
+        $auxArr['bussines_name'] = $this->bussines_name;
+        $auxArr['ci_ruc'] = $this->ci_ruc;
+        $auxArr['email'] = $this->email;
+        $auxArr['phone_number'] = $this->phone_number;
+
         session($auxArr);
 
         return redirect()->route('register');

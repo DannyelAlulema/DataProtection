@@ -76,6 +76,10 @@ class EnterpriseCard extends Component
                     $this->personal_data_use_id = (session('personal_data_use_id')) ?? session('personal_data_use_id');
                     $this->personal_data_activity_id = (session('personal_data_activity_id')) ?? session('personal_data_activity_id');
 
+                    $this->description = (session('description')) ?? session('description');
+                    $this->legal_representative = (session('legal_representative')) ?? session('legal_representative');
+                    $this->legal_representative_ci = (session('legal_representative_ci')) ?? session('legal_representative_ci');
+
                     $this->thirdPartyEmployees = (session('thirdPartyEmployees')) ?? session('thirdPartyEmployees');
                     $this->candidateData = (session('candidateData')) ?? session('candidateData');
                     $this->supplierData = (session('supplierData')) ?? session('supplierData');
@@ -86,6 +90,12 @@ class EnterpriseCard extends Component
                     $this->medic_dependence = (session('medic_dependence')) ?? session('medic_dependence');
                     $this->medic_data_porpose_id = (session('medic_data_porpose_id')) ?? session('medic_data_porpose_id');
                 }
+
+                $this->address = (session('address')) ?? session('address');
+                $this->bussines_name = (session('bussines_name')) ?? session('bussines_name');
+                $this->ci_ruc = (session('ci_ruc')) ?? session('ci_ruc');
+                $this->email = (session('email')) ?? session('email');
+                $this->phone_number = (session('phone_number')) ?? session('phone_number');
             }
         }
 
