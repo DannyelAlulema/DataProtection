@@ -24,73 +24,6 @@
         @endif
 
         @if ($category_id != null && $category_id != 0)
-            <div class="col-12 mt-3 row">
-                <div class="form-group my-2 col-12 col-lg-3">
-                    <input wire:model="bussines_name" class="form-control{{ $errors->has('bussines_name') ? ' is-invalid' : '' }}"
-                        id="bussines_name" type="text"
-                        placeholder="{{ $catSelected->code == 1 ? __('Razón social') : __('Nombre del médico') }}">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('bussines_name') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-3">
-                    <input wire:model="ci_ruc" class="form-control{{ $errors->has('ci_ruc') ? ' is-invalid' : '' }}" id="ci_ruc"
-                        type="text"
-                        placeholder="{{ $catSelected->code == 1 ? __('RUC de la empresa') : __('RUC del médico') }}">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('ci_ruc') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-3">
-                    <input wire:model="phone_number" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}"
-                        id="phone_number" type="text"
-                        placeholder="{{ $catSelected->code == 1 ? __('Nro. telefónico de la empresa') : __('Número telefónico del médico') }}">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('phone_number') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-3">
-                    <input wire:model="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                        id="email" type="text"
-                        placeholder="{{ $catSelected->code == 1 ? __('Email de la empresa') : __('Email del médico') }}">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('email') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-6">
-                    <input wire:model="legal_representative" type="text"
-                        class="form-control{{ $errors->has('legal_representative') ? ' is-invalid' : '' }}"
-                        id="legal_representative" type="text" placeholder="Representante legal">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('legal_representative') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-6">
-                    <input wire:model="legal_representative_ci"
-                        class="form-control{{ $errors->has('legal_representative_ci') ? ' is-invalid' : '' }}"
-                        id="legal_representative_ci" type="text"
-                        placeholder="Número de cédula del representante legal">
-                    <div class="invalid-feedback">
-                        {{ $errors->first('legal_representative_ci') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-6">
-                    <textarea wire:model.defer="address" name="address" id="address"
-                        class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
-                        placeholder="{{ $catSelected->code == 1 ? __('Dirección') : __('Dirección del consultorio') }}">{{ $address }}</textarea>
-                    <div class="invalid-feedback">
-                        {{ $errors->first('address') }}
-                    </div>
-                </div>
-                <div class="form-group my-2 col-12 col-lg-6">
-                    <textarea wire:model.defer="description" name="description" id="description"
-                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                        placeholder="Descripción de la actividad">{{ $description }}</textarea>
-                    <div class="invalid-feedback">
-                        {{ $errors->first('description') }}
-                    </div>
-                </div>
-            </div>
             @if ($this->catSelected->code == 1)
                 <div class="col-12 mt-3">
                     <div class="form-group">
@@ -193,13 +126,13 @@
                                 personas naturales, no jurídicas.
                             </label>
                             <div>
-                                <input value="1" name="supplierData" wire:model="supplierData"
-                                    id="supplierData1" type="radio">
+                                <input value="1" name="supplierData" wire:model="supplierData" id="supplierData1"
+                                    type="radio">
                                 <label for="supplierData1">Si</label>
                             </div>
                             <div>
-                                <input value="0" name="supplierData" wire:model="supplierData"
-                                    id="supplierData0" type="radio">
+                                <input value="0" name="supplierData" wire:model="supplierData" id="supplierData0"
+                                    type="radio">
                                 <label for="supplierData0">No</label>
                             </div>
                         </div>
@@ -212,8 +145,8 @@
                                 Entiéndase por clientes a todo tipo de persona natural
                             </label>
                             <div>
-                                <input value="1" name="customerData" wire:model="customerData"
-                                    id="customerData1" type="radio">
+                                <input value="1" name="customerData" wire:model="customerData" id="customerData1"
+                                    type="radio">
                                 <label for="customerData1">Si</label>
                             </div>
                             <div>
@@ -291,6 +224,79 @@
             @endif
         @endif
         @if ($all)
+            <div class="col-12 mt-3 row">
+                <div class="form-group my-2 col-12 col-lg-3">
+                    <input wire:model="bussines_name"
+                        class="form-control{{ $errors->has('bussines_name') ? ' is-invalid' : '' }}"
+                        id="bussines_name" type="text"
+                        placeholder="{{ $catSelected->code == 1 ? __('Razón social') : __('Nombre del médico') }}">
+                    <div class="invalid-feedback">
+                        {{ $errors->first('bussines_name') }}
+                    </div>
+                </div>
+                <div class="form-group my-2 col-12 col-lg-3">
+                    <input wire:model="ci_ruc" class="form-control{{ $errors->has('ci_ruc') ? ' is-invalid' : '' }}"
+                        id="ci_ruc" type="text"
+                        placeholder="{{ $catSelected->code == 1 ? __('RUC de la empresa') : __('RUC del médico') }}">
+                    <div class="invalid-feedback">
+                        {{ $errors->first('ci_ruc') }}
+                    </div>
+                </div>
+                <div class="form-group my-2 col-12 col-lg-3">
+                    <input wire:model="phone_number"
+                        class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" id="phone_number"
+                        type="text"
+                        placeholder="{{ $catSelected->code == 1 ? __('Nro. telefónico de la empresa') : __('Número telefónico del médico') }}">
+                    <div class="invalid-feedback">
+                        {{ $errors->first('phone_number') }}
+                    </div>
+                </div>
+                <div class="form-group my-2 col-12 col-lg-3">
+                    <input wire:model="email" type="text"
+                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email"
+                        type="text"
+                        placeholder="{{ $catSelected->code == 1 ? __('Email de la empresa') : __('Email del médico') }}">
+                    <div class="invalid-feedback">
+                        {{ $errors->first('email') }}
+                    </div>
+                </div>
+                @if ($catSelected->code == 1)
+                    <div class="form-group my-2 col-12 col-lg-6">
+                        <input wire:model="legal_representative" type="text"
+                            class="form-control{{ $errors->has('legal_representative') ? ' is-invalid' : '' }}"
+                            id="legal_representative" type="text" placeholder="Representante legal">
+                        <div class="invalid-feedback">
+                            {{ $errors->first('legal_representative') }}
+                        </div>
+                    </div>
+                    <div class="form-group my-2 col-12 col-lg-6">
+                        <input wire:model="legal_representative_ci"
+                            class="form-control{{ $errors->has('legal_representative_ci') ? ' is-invalid' : '' }}"
+                            id="legal_representative_ci" type="text"
+                            placeholder="Número de cédula del representante legal">
+                        <div class="invalid-feedback">
+                            {{ $errors->first('legal_representative_ci') }}
+                        </div>
+                    </div>
+                @endif
+                <div class="form-group my-2 col-12 col-lg-6">
+                    <textarea wire:model.defer="address" name="address" id="address"
+                        class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
+                        placeholder="{{ $catSelected->code == 1 ? __('Dirección') : __('Dirección del consultorio') }}">{{ $address }}</textarea>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('address') }}
+                    </div>
+                </div>
+                @if ($catSelected->code == 1)
+                    <div class="form-group my-2 col-12 col-lg-6">
+                        <textarea wire:model.defer="description" name="description" id="description"
+                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Descripción de la actividad">{{ $description }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ $errors->first('description') }}
+                        </div>
+                    </div>
+                @endif
+            </div>
             <div class="d-flex justify-content-center col-12 mt-3">
                 <button wire:load.desabled wire:click="confirmRegister" class="btn-learn-more"
                     style="cursor: pointer;">Continuar con el registro</button>

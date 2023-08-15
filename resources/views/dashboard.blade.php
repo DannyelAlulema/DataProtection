@@ -21,13 +21,20 @@
                 @endif
                 @if (count($data) == 0)
                     <div class="flex justify-between items-center" style="padding: 10px">
-                        <p class="w-1/2">No ha registrado a su empresa.</p>
-                        <a href="{{ route('enterprises') }}"
+                        <p class="w-1/2">
+                            {{ session('pre-register') ? __('Bienvenido a LPD, hemos encontrado un pre registro, por favor, genera tu empresa.') : __('No ha registrado a su empresa.') }}
+                        </p>
+                        {{-- <a href="{{ route('enterprises') }}"
                             class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                             <i class="fa-solid fa-cash-register mr-2"></i>
                             <span class="mx-1">
                                 {{ __('Registrar') }}
                             </span>
+                        </a> --}}
+                        <a href="{{ route('generate.enterprise') }}"
+                            class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            <i class="fa-solid fa-cash-register mr-2"></i>
+                            Generar
                         </a>
                     </div>
                 @else
@@ -44,7 +51,7 @@
                                 </div>
                                 <div class="flex flex-col" style="padding: 10px">
                                     <div class="my-1">
-                                        <a href="{{ route('download', ['document' => 1, 'enterprise_id' => $value->enterprise->id]) }}"
+                                        <a href="{{ route('download', ['document' => 1, 'enterprise_id' => $value->id]) }}"
                                             class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                             <i class="fa-solid fa-download"></i>
                                         </a>
@@ -53,7 +60,7 @@
                                         </span>
                                     </div>
                                     <div class="my-1">
-                                        <a href="{{ route('download', ['document' => 2, 'enterprise_id' => $value->enterprise->id]) }}"
+                                        <a href="{{ route('download', ['document' => 2, 'enterprise_id' => $value->id]) }}"
                                             class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                             <i class="fa-solid fa-download"></i>
                                         </a>
@@ -63,7 +70,7 @@
                                         </span>
                                     </div>
                                     <div class="my-1">
-                                        <a href="{{ route('download', ['document' => 3, 'enterprise_id' => $value->enterprise->id]) }}"
+                                        <a href="{{ route('download', ['document' => 3, 'enterprise_id' => $value->id]) }}"
                                             class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                             <i class="fa-solid fa-download"></i>
                                         </a>
@@ -73,7 +80,7 @@
                                         </span>
                                     </div>
                                     <div class="my-1">
-                                        <a href="{{ route('download', ['document' => 4, 'enterprise_id' => $value->enterprise->id]) }}"
+                                        <a href="{{ route('download', ['document' => 4, 'enterprise_id' => $value->id]) }}"
                                             class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                             <i class="fa-solid fa-download"></i>
                                         </a>
@@ -115,7 +122,7 @@
                                             class="flex flex-column">
                                             @csrf
                                             <input type="hidden" name="user_enterprise_id"
-                                                value="{{ $value->enterprise->id }}">
+                                                value="{{ $value->id }}">
                                             <div class="flex justify-center items-center" style="padding: 10px">
                                                 <div class="w-1/2" style="margin: 0 25px 0 25px;">
                                                     <label class="block text-gray-700 text-sm font-bold mb-2"
@@ -174,11 +181,13 @@
                                 </div>
                             </div>
                         @else
-                            @if ($value->enterprise->sector_id == null &&
-                            $value->enterprise->personal_data_use_id == null &&
-                            $value->enterprise->personal_data_activity_id == null)
+                            @if (
+                                $value->enterprise->sector_id == null &&
+                                    $value->enterprise->personal_data_use_id == null &&
+                                    $value->enterprise->personal_data_activity_id == null)
                                 <div class="flex justify-between items-center" style="padding: 10px">
-                                    <p class="w-1/2"><b>{{ $value->enterprise->bussines_name }}: </b> Antes de acceder a
+                                    <p class="w-1/2"><b>{{ $value->enterprise->bussines_name }}: </b> Antes de
+                                        acceder a
                                         la ley de protección de datos debe cancelar los valores pendientes.</p>
                                     <a href="{{ route('pay', ['user_enterprise_id' => $value->id]) }}"
                                         style="cursor: pointer;"
@@ -190,22 +199,22 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="{{ route('download', ['document' => 1, 'enterprise_id' => $value->enterprise->id]) }}"
+                                    <a href="{{ route('download', ['document' => 1, 'enterprise_id' => $value->id]) }}"
                                         class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         Documento 1
                                     </a>
-                                    <a href="{{ route('download', ['document' => 2, 'enterprise_id' => $value->enterprise->id]) }}"
+                                    <a href="{{ route('download', ['document' => 2, 'enterprise_id' => $value->id]) }}"
                                         class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         Documento 2
                                     </a>
-                                    <a href="{{ route('download', ['document' => 3, 'enterprise_id' => $value->enterprise->id]) }}"
+                                    <a href="{{ route('download', ['document' => 3, 'enterprise_id' => $value->id]) }}"
                                         class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         Documento 3
                                     </a>
-                                    <a href="{{ route('download', ['document' => 4, 'enterprise_id' => $value->enterprise->id]) }}"
+                                    <a href="{{ route('download', ['document' => 4, 'enterprise_id' => $value->id]) }}"
                                         class="inline-flex items-center px-4 py-2 ml-4 mb-3 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 cursor-pointer">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         Documento 4
@@ -213,7 +222,9 @@
                                 </div>
                             @else
                                 <div class="flex justify-between items-center" style="padding: 10px">
-                                    <p class="w-1/2"><b>{{ $value->enterprise->bussines_name }}: </b> Ten encuenta que tu empresa necesita una acesoria perzonalizada para agendarla paga los valores pendientes.</p>
+                                    <p class="w-1/2"><b>{{ $value->enterprise->bussines_name }}: </b> Ten encuenta
+                                        que tu empresa necesita una acesoria perzonalizada para agendarla paga los
+                                        valores pendientes.</p>
                                     <a href="{{ route('pay', ['user_enterprise_id' => $value->id]) }}"
                                         style="cursor: pointer;"
                                         class="inline-flex items-center px-4 py-2 ml-4 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">

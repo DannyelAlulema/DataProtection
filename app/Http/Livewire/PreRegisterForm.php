@@ -42,9 +42,11 @@ class PreRegisterForm extends Component
     {
         $message = '';
         if ($this->catSelected->code == 1) {
-            if ($this->sector_id != null && $this->personal_data_use_id != null && $this->personal_data_activity_id != null)
+            if ($this->sector_id != null || $this->personal_data_use_id != null || $this->personal_data_activity_id != null)
             {
-                $this->all = true;
+                if ($this->sector_id != null && $this->personal_data_use_id != null && $this->personal_data_activity_id != null)
+                    $this->all = true;
+
                 if ($this->sector_id == 0 && $this->personal_data_use_id == 0 && $this->personal_data_activity_id == 0)
                     $message = '¡Su empresa ya puede acceder a la ley de protección de datos! Solo complete el registro.';
                 else

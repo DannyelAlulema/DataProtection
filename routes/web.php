@@ -29,7 +29,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'), 'verified'
 
     Route::get('/dashboard', [ HomeController::class, 'index' ])->name('dashboard');
 
-    Route::get('/enterprises', [ EnterpriseController::class, 'index' ])->name('enterprises');
+    Route::get('/enterprise/generate', [ EnterpriseController::class, 'generate' ])->name('generate.enterprise');
+    //Route::get('/enterprises', [ EnterpriseController::class, 'index' ])->name('enterprises');
 
     Route::get('/pay/{user_enterprise_id}', [ EnterpriseController::class, 'pay' ])->name('pay');
     //Route::post('/pay/{enterprise_id}', [ EnterpriseController::class, 'pay' ])->name('pay');
